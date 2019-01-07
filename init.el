@@ -163,10 +163,10 @@
 	'minibuffer-complete-word)
       (define-key minibuffer-local-must-match-filename-map " "
 	'minibuffer-complete-word)))
-(global-set-key "\C-\\" 'help-command)
-(global-set-key "\C-\\\C-\\" 'help-for-help)
-(global-set-key "\M-g" 'goto-line)
-(global-set-key "\C-h" 'delete-backward-char)
+(global-set-key (kbd "C-\\") 'help-command)
+(global-set-key (kbd "C-\\ C-\\") 'help-for-help)
+(global-set-key (kbd "M-g") 'goto-line)
+(global-set-key (kbd "C-h") 'delete-backward-char)
 
 ; Frame title
 (setq frame-title-format
@@ -189,7 +189,7 @@
     (if enable-regexp
 	(query-replace-regexp (nth 0 args) (nth 1 args))
       (query-replace (nth 0 args) (nth 1 args)))))
-(global-set-key "\M-%" 'select-query-replace)
+(global-set-key (kbd "M-%") 'select-query-replace)
 
 ; Find file
 (defun select-find-file (enable-hexl)
@@ -199,11 +199,11 @@
 	       (read-file-name "Filename: " nil nil t))
     (funcall (function find-file)
 	     (read-file-name "Find file: " nil nil nil))))
-(global-set-key "\C-x\C-f" 'select-find-file)
+(global-set-key (kbd "C-x C-f") 'select-find-file)
 
 ; Buffer switching
 (iswitchb-mode t)
-(global-set-key "\C-x\C-b" 'ibuffer)
+(global-set-key (kbd "C-x C-b") 'ibuffer)
 (defadvice switch-to-buffer (before strict-buffer-name activate)
   (interactive (list (read-buffer "Switch to buffer: " (other-buffer) t))))
 (defadvice switch-to-buffer-other-window (before strict-buffer-name activate)
@@ -244,8 +244,8 @@
   (if previous
       (other-window -1)
     (other-window 1)))
-(global-set-key "\M-o" 'other-window-one-step)
-(global-set-key "\C-^" 'other-window-one-step)
+(global-set-key (kbd "M-o") 'other-window-one-step)
+(global-set-key (kbd "C-^") 'other-window-one-step)
 (setq truncate-partial-width-windows nil)
 
 ; No new lines
@@ -261,8 +261,8 @@
 (defun insert-current-time()
   (interactive)
   (insert (format-time-string "%H:%M:%S" (current-time))))
-(global-set-key "\C-c;" 'insert-current-date)
-(global-set-key "\C-c:" 'insert-current-time)
+(global-set-key (kbd "C-c ;") 'insert-current-date)
+(global-set-key (kbd "C-c :") 'insert-current-time)
 
 ; C & C++ mode customization
 (add-hook
@@ -296,7 +296,7 @@
 ; Exciting cite utility
 (autoload 'xcite "xcite" "exciting cite" t)
 (autoload 'xcite-yank-cur-msg "xcite" "exciting cite" t)
-(global-set-key "\C-cc" 'xcite)
+(global-set-key (kbd "C-c c") 'xcite)
 (setq xcite:insert-header-function
       (function xcite-toki-header))
 (defun xcite-toki-header ()
@@ -400,8 +400,8 @@
 (autoload 'skk-auto-fill-mode "skk" nil t)
 (autoload 'skk-isearch-mode-setup "skk-isearch" nil t)
 (autoload 'skk-isearch-mode-cleanup "skk-isearch" nil t)
-(global-set-key "\C-x\C-j" (function skk-mode))
-(global-set-key "\C-xj" '(function skk-auto-fill-mode))
+(global-set-key (kbd "C-x C-j") (function skk-mode))
+(global-set-key (kbd "C-x j") (function skk-auto-fill-mode))
 (add-hook 'isearch-mode-hook (function skk-isearch-mode-setup))
 (add-hook 'isearch-mode-end-hook (function skk-isearch-mode-cleanup))
 (setq skk-large-jisyo "/usr/share/skk/SKK-JISYO.L")
@@ -420,8 +420,8 @@
   "" t nil)
 (autoload 'sdic-describe-word-at-point "sdic"
   "" t nil)
-(global-set-key "\C-xw" 'sdic-describe-word)
-(global-set-key "\C-xW" 'sdic-describe-word-at-point)
+(global-set-key (kbd "C-x w") 'sdic-describe-word)
+(global-set-key (kbd "C-x W") 'sdic-describe-word-at-point)
 (setq sdic-eiwa-dictionary-list
       (mapcar
        (lambda (sdic-dictionary)
@@ -467,7 +467,7 @@
 		    '("-header" "Pragma: no-cache"
 		      "-header" "Cache-Control: no-cache"))))
        ad-do-it)))
-(global-set-key "\C-xm" 'browse-url-at-point)
+(global-set-key (kbd "C-x m") 'browse-url-at-point)
 (setq shimbun-asahi-url "http://www.asahi.com/")
 (setq shimbun-asahi-html-url "http://www.asahi.com/")
 (custom-declare-face
