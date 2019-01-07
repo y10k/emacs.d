@@ -202,7 +202,9 @@
 (global-set-key (kbd "C-x C-f") 'select-find-file)
 
 ; Buffer switching
-(iswitchb-mode t)
+(icomplete-mode)
+(define-key icomplete-minibuffer-map (kbd "C-s") 'icomplete-forward-completions)
+(define-key icomplete-minibuffer-map (kbd "C-r") 'icomplete-backward-completions)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (defadvice switch-to-buffer (before strict-buffer-name activate)
   (interactive (list (read-buffer "Switch to buffer: " (other-buffer) t))))
