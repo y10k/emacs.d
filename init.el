@@ -17,7 +17,6 @@
 (add-to-list 'load-path (locate-user-emacs-file "local/lib"))
 
 ; Emacs Lisp Package Archive
-; install packages: markdown-mode
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
 (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
@@ -136,13 +135,6 @@
 	      (foreground-color . "Black")
 	      (background-color . "OldLace")
 	      (alpha . (90 70 70 70))))
-      (cond
-       ((string-match "^varcolac" (downcase (system-name)))
-	(setcdr (assq 'width initial-frame-alist) 120)
-	(setcdr (assq 'height initial-frame-alist) 56))
-       ((string-match "^cherry-blossom" (downcase (system-name)))
-	(setcdr (assq 'width initial-frame-alist) 110)
-	(setcdr (assq 'height initial-frame-alist) 50)))
       (setq default-frame-alist initial-frame-alist)))
 
 ; Shell mode
@@ -272,149 +264,6 @@
 (global-set-key "\C-c;" 'insert-current-date)
 (global-set-key "\C-c:" 'insert-current-time)
 
-; HTML mode
-(setq auto-mode-alist
-      (append '(("\\.rhtml$" . html-mode)
-		("\\.xhtml$" . sgml-mode)) auto-mode-alist))
-(eval-after-load "sgml-mode"
-  '(setq html-tag-alist
-	 (let* ((1-7 '(("1") ("2") ("3") ("4") ("5") ("6") ("7")))
-		(1-9 '(,@1-7 ("8") ("9")))
-		(align '(("align" ("left") ("center") ("right"))))
-		(valign '(("top") ("middle") ("bottom") ("baseline")))
-		(rel '(("next") ("previous") ("parent") ("subdocument") ("made")))
-		(href '("href" ("ftp:") ("file:") ("finger:") ("gopher:") ("http:")
-			("mailto:") ("news:") ("rlogin:") ("telnet:") ("tn3270:")
-			("wais:") ("/cgi-bin/")))
-		(name '("name"))
-		(link `(,href
-			("rel" ,@rel)
-			("rev" ,@rel)
-			("title")))
-		(list '((nil \n ( "List item: "
-				  "<li>" str \n))))
-		(cell `(,align
-			("valign" ,@valign)
-			("colspan" ,@1-9)
-			("rowspan" ,@1-9)
-			("nowrap" t))))
-	   ;; put ,-expressions first, else byte-compile chokes (as of V19.29)
-	   ;; and like this it's more efficient anyway
-	   `(("a" ,name ,@link)
-	     ("base" t ,@href)
-	     ("dir" ,@list)
-	     ("font" nil "size" ("-1") ("+1") ("-2") ("+2") ,@1-7)
-	     ("form" (\n _ \n "<input type=\"submit\" value=\"\">")
-	      ("action" ,@(cdr href)) ("method" ("get") ("post")))
-	     ("h1" ,@align)
-	     ("h2" ,@align)
-	     ("h3" ,@align)
-	     ("h4" ,@align)
-	     ("h5" ,@align)
-	     ("h6" ,@align)
-	     ("hr" t ("size" ,@1-9) ("width") ("noshade" t) ,@align)
-	     ("img" t ("align" ,@valign ("texttop") ("absmiddle") ("absbottom"))
-	      ("src") ("alt") ("width" "1") ("height" "1")
-	      ("border" "1") ("vspace" "1") ("hspace" "1") ("ismap" t))
-	     ("input" t ("size" ,@1-9) ("maxlength" ,@1-9) ("checked" t) ,name
-	      ("type" ("text") ("password") ("checkbox") ("radio")
-	       ("submit") ("reset"))
-	      ("value"))
-	     ("link" t ,@link)
-	     ("menu" ,@list)
-	     ("ol" ,@list ("type" ("A") ("a") ("I") ("i") ("1")))
-	     ("p" ,@align)
-	     ("select" (nil \n
-			    ("Text: "
-			     "<option>" str \n))
-	      ,name ("size" ,@1-9) ("multiple" t))
-	     ("table" (nil \n
-			   ((completing-read "Cell kind: " '(("td") ("th"))
-					     nil t "t")
-			    "<tr><" str ?> _ \n))
-	      ("border" t ,@1-9) ("width" "10") ("cellpadding"))
-	     ("td" ,@cell)
-	     ("textarea" ,name ("rows" ,@1-9) ("cols" ,@1-9))
-	     ("th" ,@cell)
-	     ("ul" ,@list ("type" ("disc") ("circle") ("square")))
-
-	     ,@sgml-tag-alist
-
-	     ("abbrev")
-	     ("acronym")
-	     ("address")
-	     ("array" (nil \n
-			   ("Item: " "<item>" str \n))
-	      "align")
-	     ("au")
-	     ("b")
-	     ("big")
-	     ("blink")
-	     ("blockquote" \n)
-	     ("body" \n ("background" ".gif") ("bgcolor" "#") ("text" "#")
-	      ("link" "#") ("alink" "#") ("vlink" "#"))
-	     ("box" (nil _ "<over>" _))
-	     ("br" t ("clear" ("left") ("right")))
-	     ("caption" ("valign" ("top") ("bottom")))
-	     ("center" \n)
-	     ("cite")
-	     ("code" \n)
-	     ("dd")
-	     ("del")
-	     ("dfn")
-	     ("dl" (nil \n
-			( "Term: "
-			  "<dt>" str "</dt><dd></dd>" _ \n)))
-	     ("dt")
-	     ("em")
-					;("fn" "id" "fn")  ; ???
-	     ("head" \n)
-	     ("html" (\n
-		      "<head>\n"
-		      "<title>" (setq str (read-input "Title: ")) "</title>\n"
-		      "</head>\n"
-		      "<body>\n<h1>" str "</h1>\n" _
-		      "\n<address>\n<a href=\"mailto:"
-		      user-mail-address
-		      "\">" (user-full-name) "</a>\n</address>\n"
-		      "</body>"
-		      ))
-	     ("i")
-	     ("ins")
-	     ("isindex" t ("action") ("prompt"))
-	     ("kbd")
-	     ("lang")
-	     ("li")
-	     ("math" \n)
-	     ("nobr")
-	     ("option" t ("value") ("label") ("selected" t))
-	     ("over" t)
-	     ("person")
-	     ("pre" \n)
-	     ("q")
-	     ("rev")
-	     ("s")
-	     ("samp")
-	     ("small")
-	     ("strong")
-	     ("sub")
-	     ("sup")
-	     ("title")
-	     ("tr" t)
-	     ("tt")
-	     ("u")
-	     ("var")
-	     ("wbr" t)))))
-
-; XML mode
-(setq auto-mode-alist
-      (append '(("\\.xml\\(\\.[^\\.]+\\)?$" . sgml-mode)
-		("\\.xsl\\(\\.[^\\.]+\\)?$" . sgml-mode)) auto-mode-alist))
-
-; Java mode
-(setq auto-mode-alist
-      (append '(("\\.java\\(\\.[^\\.]+\\)?$" . java-mode)) auto-mode-alist))
-
 ; C & C++ mode customization
 (add-hook
  'c-mode-common-hook
@@ -484,15 +333,8 @@
 ; Comparing files
 (setq diff-switches "-u")
 
-; PAW - kumac-mode
-(autoload 'kumac-mode "kumac-mode" "mode for editing kumac files." t)
-(setq auto-mode-alist
-      (append '(("\\.kumac$" . 'kumac-mode)) auto-mode-alist))
-
 ; Verilog-HDL mode
 (setq use-verilog-mode t)
-;(load "color-def")
-;(load "verilog-color")
 (autoload 'verilog-mode "verilog-mode" "verilog mode" t )
 (setq auto-mode-alist
       (append '(("\\.v\\'" . verilog-mode)
@@ -517,14 +359,6 @@
 ; Shell script mode
 (setq sh-indentation 2)
 (setq sh-basic-offset 2)
-
-;; ; Shell command completion
-;; (autoload 'shell-command-with-completion
-;;       "shell-command" "alternate shell-command" t nil)
-;; (define-key global-map "\e!" 'shell-command-with-completion)
-;; (autoload 'shell-command-with-completion-on-region
-;;   "shell-command" "alternate shell-command-on-region" t nil)
-;; (define-key global-map "\e|" 'shell-command-with-completion-on-region)
 
 ; Fetchmail
 (autoload 'fetchmail "fetchmail" nil t)
@@ -659,51 +493,21 @@
 (if (>= emacs-major-version 21)
     (mouse-wheel-mode 1))
 
-;; ; Navi2ch
-;; (require 'navi2ch)
-;; (setq navi2ch-list-bbstable-url "http://menu.2ch.net/bbsmenu.html")
-;; (if (eq system-type 'windows-nt)
-;;     (setq navi2ch-directory "//cernobog/toki/.navi2ch"))
-
-; HOME directory
-(if (eq system-type 'windows-nt)
-    (cd (expand-file-name "~")))
-
 ; patch for ediff
-;; (if (and (featurep 'meadow)
-;; 	 (string-match "Meadow-1\.15" (Meadow-version)))
-    (progn
-      (eval-after-load "ediff-init"
-	'(defadvice ediff-window-display-p (after disable-window-display activate)
-	   (setq ad-return-value nil)))
-      (if (eq window-system 'w32)
-	  (setq ediff-force-faces t)))
-;;   )
-
-; Big Brother Database
-(setq bbdb-file
-      (if (eq system-type 'windows-nt)
-	  "//cernobog/toki/.bbdb"
-	"~/.bbdb"))
+(eval-after-load "ediff-init"
+  '(defadvice ediff-window-display-p (after disable-window-display activate)
+     (setq ad-return-value nil)))
+(if (eq window-system 'w32)
+    (setq ediff-force-faces t))
 
 ; mini buffer
 (if (eq emacs-major-version 21)
     (setq resize-mini-windows nil))
 
-; for JavaScript
-(autoload 'ecmascript-mode "ecmascript-mode"
-  "Major mode for editing ECMAScript code." t)
-(setq auto-mode-alist
-      (append '(("\\.js$" . ecmascript-mode)) auto-mode-alist))
-
 ; for dired
 (add-hook 'dired-load-hook
 	  (lambda ()
 	    (define-key dired-mode-map "W" 'browse-url-of-dired-file)))
-
-; for subversion
-;(require 'psvn)
-;(add-to-list 'vc-handled-backends 'SVN)
 
 ; for python
 (setq python-indent 2)
@@ -715,7 +519,6 @@
 (setq visual-basic-mode-indent 2)
 
 ; for git
-;(require 'git)
 (autoload 'git-blame-mode "git-blame"
   "Minor mode for incremental blame for Git." t)
 (add-to-list 'vc-handled-backends 'GIT)
