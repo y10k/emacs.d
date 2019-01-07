@@ -7,12 +7,14 @@
 (setq user-mail-address "toki@freedom.ne.jp")
 (setq user-full-name "TOKI Yoshinori")
 
+; emacs -q -lした時に、user-emacs-directoryが変わるように
+(when load-file-name
+    (setq user-emacs-directory (file-name-directory load-file-name)))
+
 ; Local emacs-lisp library path
-(setq load-path
-      (append (list (expand-file-name "~/elisp/work")
-		    (expand-file-name "~/elisp/patch")
-		    (expand-file-name "~/elisp/lib"))
-	      load-path))
+(add-to-list 'load-path (locate-user-emacs-file "local/work"))
+(add-to-list 'load-path (locate-user-emacs-file "local/patch"))
+(add-to-list 'load-path (locate-user-emacs-file "local/lib"))
 
 ; Emacs Lisp Package Archive
 ; install packages: markdown-mode
