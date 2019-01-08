@@ -321,6 +321,8 @@
 
 ; Ruby mode
 (require 'ruby-test-unit)
+(add-hook 'ruby-mode-hook
+          (lambda () (ruby-test-unit-keys)))
 (setq ruby-test-unit-runner-options "--no-use-color") ; for test-unit on ruby-2.2.0 or later.
 (setq ruby-program-name
       (concat "ruby " (expand-file-name "/usr/local/bin/irb") " --inf-ruby-mode"))
