@@ -534,11 +534,11 @@
     (menu-bar-mode 0))
 
 ; memo
-(defun change-log-markdown-open ()
-  "open change-log.md"
-  (interactive)
-  (find-file "/mnt/c/Users/toki/OneDrive/ドキュメント/change-log.md")
-  (goto-char (point-max)))
+(require 'change-log-markdown)
+(setq change-log-markdown-log-file "/mnt/c/Users/toki/OneDrive/ドキュメント/change-log.md")
+(setq change-log-markdown-header-title "作業メモ")
+(global-set-key (kbd "C-c 4") nil)
+(global-set-key (kbd "C-c 4 a") 'change-log-markdown-add-entry)
 
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
