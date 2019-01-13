@@ -39,7 +39,7 @@
 (defun change-log-markdown-insert-new-log-entry (title header-level)
   (goto-char (point-max))
   (insert (concat "\n"
-                  (make-string header-level ?=) " " title "\n")))
+                  (make-string header-level ?#) " " title "\n")))
 
 (defun change-log-markdown-add-entry ()
   "open change-log.md and new entry"
