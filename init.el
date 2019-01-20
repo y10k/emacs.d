@@ -548,6 +548,9 @@
 ;; flycheck
 (add-hook 'after-init-hook 'global-flycheck-mode)
 
+;; git-gutter
+(global-git-gutter-mode t)
+
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
 (put 'narrow-to-region 'disabled nil)
