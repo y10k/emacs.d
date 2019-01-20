@@ -545,6 +545,9 @@
 (global-set-key (kbd "C-c 4") nil)
 (global-set-key (kbd "C-c 4 a") 'change-log-markdown-add-entry)
 
+;; flycheck
+(add-hook 'after-init-hook 'global-flycheck-mode)
+
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
 (put 'narrow-to-region 'disabled nil)
