@@ -1,4 +1,8 @@
-; -*- mode: Emacs-Lisp;-*-
+;;; init.el --- initialize emacs
+
+;;; Commentary:
+
+;;; Code:
 
 ; HOME directory
 (cd (expand-file-name "~"))
@@ -557,4 +561,8 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(ange-ftp-try-passive-mode t)
- '(package-selected-packages (quote (inf-ruby yari yaml-mode markdown-mode))))
+ '(package-selected-packages
+   (quote
+    (flycheck git-gutter inf-ruby yari yaml-mode markdown-mode))))
+
+;;; init.el ends here
