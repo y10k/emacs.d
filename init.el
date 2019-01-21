@@ -551,6 +551,13 @@
 ;; git-gutter
 (global-git-gutter-mode t)
 
+;; auto-complete
+(require 'auto-complete-config)
+(define-key ac-mode-map (kbd "M-TAB") 'auto-complete)
+(ac-config-default)
+(setq ac-use-menu-map t)
+(setq ac-ignore-case nil)
+
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
 (put 'narrow-to-region 'disabled nil)
@@ -569,6 +576,6 @@
  '(ange-ftp-try-passive-mode t)
  '(package-selected-packages
    (quote
-    (flycheck git-gutter inf-ruby yari yaml-mode markdown-mode))))
+    (auto-complete flycheck git-gutter inf-ruby yari yaml-mode markdown-mode))))
 
 ;;; init.el ends here
