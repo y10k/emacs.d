@@ -558,6 +558,9 @@
 (setq ac-use-menu-map t)
 (setq ac-ignore-case nil)
 
+;; Helm
+(require 'helm-config)
+
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
 (put 'narrow-to-region 'disabled nil)
@@ -576,6 +579,6 @@
  '(ange-ftp-try-passive-mode t)
  '(package-selected-packages
    (quote
-    (auto-complete flycheck git-gutter inf-ruby yari yaml-mode markdown-mode))))
+    (helm helm-git-grep auto-complete flycheck git-gutter inf-ruby yari yaml-mode markdown-mode))))
 
 ;;; init.el ends here
