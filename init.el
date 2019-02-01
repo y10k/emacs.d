@@ -571,6 +571,8 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(default ((t (:inherit nil :stipple nil :background "Black" :foreground "White" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 113 :width normal :foundry "unknown" :family "DejaVu Sans Mono"))))
+ '(font-lock-builtin-face ((t (:foreground "brightblue"))))
+ '(font-lock-keyword-face ((t (:foreground "cyan"))))
  '(match ((t (:background "RoyalBlue3" :foreground "brightyellow"))))
  '(region ((t (:background "blue3" :foreground "brightwhite")))))
 (custom-set-variables
