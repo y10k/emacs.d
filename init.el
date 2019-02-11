@@ -544,6 +544,12 @@
 (setq change-log-markdown-header-title "作業メモ")
 (global-set-key (kbd "C-c 4") nil)
 (global-set-key (kbd "C-c 4 a") 'change-log-markdown-add-entry)
+(add-hook 'markdown-mode-hook
+          '(lambda ()
+             (electric-indent-local-mode -1)))
+(add-hook 'text-mode-hook
+          '(lambda ()
+             (electric-indent-local-mode -1)))
 
 ;; flycheck
 (add-hook 'after-init-hook 'global-flycheck-mode)
