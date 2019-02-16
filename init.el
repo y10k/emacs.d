@@ -208,7 +208,7 @@
 (icomplete-mode)
 (define-key icomplete-minibuffer-map (kbd "C-s") 'icomplete-forward-completions)
 (define-key icomplete-minibuffer-map (kbd "C-r") 'icomplete-backward-completions)
-(global-set-key (kbd "C-x C-b") 'ibuffer)
+(global-set-key (kbd "C-x C-b") 'helm-buffers-list)
 (defadvice switch-to-buffer (before strict-buffer-name activate)
   (interactive (list (read-buffer "Switch to buffer: " (other-buffer) t))))
 (defadvice switch-to-buffer-other-window (before strict-buffer-name activate)
@@ -569,6 +569,15 @@
 
 ;; imenu
 (setq imenu-max-item-length 256)
+
+;; whitespace
+(setq-default indent-tabs-mode nil)       ; インデントはタブではなくスペースを使用
+(setq-default show-trailing-whitespace t) ; 行末の空白をハイライト
+(add-hook 'font-lock-mode-hook            ; タブをハイライト
+          (lambda ()
+            (font-lock-add-keywords
+             nil
+             '(("\t" 0 'trailing-whitespace prepend)))))
 
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
