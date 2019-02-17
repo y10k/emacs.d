@@ -601,6 +601,6 @@
  '(ange-ftp-try-passive-mode t)
  '(package-selected-packages
    (quote
-    (helm helm-git-grep auto-complete flycheck git-gutter inf-ruby yari yaml-mode markdown-mode))))
+    (helm-swoop helm helm-git-grep auto-complete flycheck git-gutter inf-ruby yari yaml-mode markdown-mode))))
 
 ;;; init.el ends here
