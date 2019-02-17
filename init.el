@@ -573,11 +573,22 @@
 ;; whitespace
 (setq-default indent-tabs-mode nil)       ; インデントはタブではなくスペースを使用
 (setq-default show-trailing-whitespace t) ; 行末の空白をハイライト
-(add-hook 'font-lock-mode-hook            ; タブをハイライト
-          (lambda ()
-            (font-lock-add-keywords
-             nil
-             '(("\t" 0 'trailing-whitespace prepend)))))
+
+(defun my/disable-trailing-whitespace-mode-hook ()
+  "Disable show tail whitespace."
+    (setq show-trailing-whitespace nil))
+
+(setq my/disable-trailing-whitespace-mode-list
+  '(comint-mode
+    eshell-mode
+    eww-mode
+    completion-setup
+    vc-git-log-view-mode
+    helm-major-mode))
+
+(dolist (mode my/disable-trailing-whitespace-mode-list)
+  (add-hook (intern (concat (symbol-name mode) "-hook"))
+            'my/disable-trailing-whitespace-mode-hook))
 
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
