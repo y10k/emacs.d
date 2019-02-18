@@ -585,7 +585,8 @@ If ARG is true execute `helm-find-files', else do `find-file'."
     eww-mode
     completion-setup
     vc-git-log-view-mode
-    helm-major-mode))
+    helm-major-mode
+    compilation-mode))
 
 (dolist (mode my/disable-trailing-whitespace-mode-list)
   (add-hook (intern (concat (symbol-name mode) "-hook"))
