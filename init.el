@@ -194,16 +194,6 @@
       (query-replace (nth 0 args) (nth 1 args)))))
 (global-set-key (kbd "M-%") 'select-query-replace)
 
-; Find file
-(defun select-find-file (enable-hexl)
-  (interactive "P")
-  (if enable-hexl
-      (funcall (function hexl-find-file)
-               (read-file-name "Filename: " nil nil t))
-    (funcall (function find-file)
-             (read-file-name "Find file: " nil nil nil))))
-(global-set-key (kbd "C-x C-f") 'select-find-file)
-
 ; Buffer switching
 (icomplete-mode)
 (define-key icomplete-minibuffer-map (kbd "C-s") 'icomplete-forward-completions)
@@ -566,6 +556,17 @@
 
 ;; Helm
 (require 'helm-config)
+(defun select-find-file (arg)
+  "Select `find-file' function.
+If ARG is true execute `helm-find-files', else do `find-file'."
+  (interactive "P")
+  (if arg
+      (funcall (function find-file)
+               (read-file-name "Find file: " nil nil nil))
+    (helm-find-files arg)))
+(global-set-key (kbd "C-x C-f") 'select-find-file)         ; replace helm command
+(global-set-key (kbd "M-x") 'helm-M-x)                     ; replace helm command
+(global-set-key (kbd "ESC M-x") 'execute-extended-command) ; backup original command
 
 ;; imenu
 (setq imenu-max-item-length 256)
