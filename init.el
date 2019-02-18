@@ -604,6 +604,7 @@ If ARG is true execute `helm-find-files', else do `find-file'."
  '(default ((t (:inherit nil :stipple nil :background "Black" :foreground "White" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 113 :width normal :foundry "unknown" :family "DejaVu Sans Mono"))))
  '(font-lock-builtin-face ((t (:foreground "brightblue"))))
  '(font-lock-keyword-face ((t (:foreground "cyan"))))
+ '(helm-selection ((t (:background "ForestGreen" :foreground "brightyellow"))))
  '(match ((t (:background "RoyalBlue3" :foreground "brightyellow"))))
  '(region ((t (:background "blue3" :foreground "brightwhite")))))
 (custom-set-variables
