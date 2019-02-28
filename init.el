@@ -67,31 +67,32 @@
    '(match ((t (:background "RoyalBlue3" :foreground "brightyellow"))))
    '(region ((t (:background "blue3" :foreground "brightwhite"))))))
 
-;; alpha
-(if (and (eq window-system 'x)
-         (>= emacs-major-version 23))
-    (progn
-      (setq initial-frame-alist
-            '((width . 180)
-              (height . 55)
-              (cursor-color . "Green")
-              (foreground-color . "White")
-              (background-color . "Black")
-              (alpha . (75 50 50 50))
-              (font . "Takaoゴシック-17")
-              ;; (font . "DejaVu Sans Mono-15")
-              ))
-      (setq default-frame-alist initial-frame-alist)))
+;; frame size & alpha
+(if window-system
+    (let ((frame-alist
+           (cond
+            ((and (eq window-system 'x) (>= emacs-major-version 23))
+             '((width . 180)
+               (height . 55)
+               (cursor-color . "Green")
+               (foreground-color . "White")
+               (background-color . "Black")
+               (alpha . (75 50 50 50))
+               (font . "Takaoゴシック-17")
+               ;; (font . "DejaVu Sans Mono-15")
+               ))
+            ((eq window-system 'w32)
+             '((width . 160)
+               (height . 53)
+               (alpha . (90 60 60 60))
+               )))))
+      (setq initial-frame-alist frame-alist)
+      (setq default-frame-alist frame-alist)))
 
-;; alpha for MS-Windows
-(if (eq window-system 'w32)
-    (progn
-      (setq initial-frame-alist
-            '((width . 160)
-              (height . 53)
-              (alpha . (90 60 60 60))
-              ))
-      (setq default-frame-alist initial-frame-alist)))
+;; frame title
+(setq frame-title-format
+      '(multiple-frames ("%b - " invocation-name "@" system-name)
+                        ("" invocation-name "@" system-name)))
 
 ;; Shell mode
 (setq comint-scroll-show-maximum-output t)
@@ -116,11 +117,6 @@
 (global-set-key (kbd "C-\\") 'help-command)
 (global-set-key (kbd "C-\\ C-\\") 'help-for-help)
 (global-set-key (kbd "C-h") 'delete-backward-char)
-
-;; Frame title
-(setq frame-title-format
-      '(multiple-frames ("%b - " invocation-name "@" system-name)
-                        ("" invocation-name "@" system-name)))
 
 ;; Mode line information
 (setq display-time-24hr-format t)
