@@ -155,12 +155,6 @@
       (mapcar
        (lambda (path) (expand-file-name path))
        '("/usr/share/info" "/usr/local/info" "/usr/X11R6/info")))
-(cond
- ((eq system-type 'windows-nt)
-  (setq Info-directory-list
-        (mapcar
-         (lambda (path) (expand-file-name path))
-         '("/usr/local/Meadow/1.14/info" "/usr/local/info")))))
 
 ; User key bindings
 (load "term/bobcat")
@@ -452,33 +446,33 @@
 ; Use unzip on zip mode
 (setq archive-zip-use-pkzip nil)
 
-; WWW browser
-(setq w3m-coding-system
-      (cond
-       ((eq system-type 'windows-nt) 'shift_jis-dos)
-       (t 'utf-8)))
-(setq browse-url-browser-function 'browse-url-mozilla)
-(setq mime-setup-enable-inline-html nil)
-(autoload 'w3m "w3m" "Interface for w3m on Emacs." t)
-(autoload 'w3m-find-file "w3m" "w3m Interface function for local file." t)
-(autoload 'w3m-browse-url "w3m" "Ask a WWW browser to show a URL." t)
-(eval-after-load "w3m"
-  '(defadvice w3m-reload-this-page (around no-cache activate)
-     (let ((w3m-command-arguments
-            (append w3m-command-arguments
-                    '("-header" "Pragma: no-cache"
-                      "-header" "Cache-Control: no-cache"))))
-       ad-do-it)))
-(global-set-key (kbd "C-x m") 'browse-url-at-point)
-(setq shimbun-asahi-url "http://www.asahi.com/")
-(setq shimbun-asahi-html-url "http://www.asahi.com/")
-(custom-declare-face
- 'w3m-form-face
- '((((class color) (background light)) (:foreground "red" :underline t))
-   (((class color) (background dark)) (:foreground "red" :underline t))
-   (t (:underline t)))
- "*Face to fontify forms."
- :group 'w3m-face)
+;; ; WWW browser
+;; (setq w3m-coding-system
+;;       (cond
+;;        ((eq system-type 'windows-nt) 'shift_jis-dos)
+;;        (t 'utf-8)))
+;; (setq browse-url-browser-function 'browse-url-mozilla)
+;; (setq mime-setup-enable-inline-html nil)
+;; (autoload 'w3m "w3m" "Interface for w3m on Emacs." t)
+;; (autoload 'w3m-find-file "w3m" "w3m Interface function for local file." t)
+;; (autoload 'w3m-browse-url "w3m" "Ask a WWW browser to show a URL." t)
+;; (eval-after-load "w3m"
+;;   '(defadvice w3m-reload-this-page (around no-cache activate)
+;;      (let ((w3m-command-arguments
+;;             (append w3m-command-arguments
+;;                     '("-header" "Pragma: no-cache"
+;;                       "-header" "Cache-Control: no-cache"))))
+;;        ad-do-it)))
+;; (global-set-key (kbd "C-x m") 'browse-url-at-point)
+;; (setq shimbun-asahi-url "http://www.asahi.com/")
+;; (setq shimbun-asahi-html-url "http://www.asahi.com/")
+;; (custom-declare-face
+;;  'w3m-form-face
+;;  '((((class color) (background light)) (:foreground "red" :underline t))
+;;    (((class color) (background dark)) (:foreground "red" :underline t))
+;;    (t (:underline t)))
+;;  "*Face to fontify forms."
+;;  :group 'w3m-face)
 
 ; EWB mode
 (autoload 'ewb-mode "ewb-mode" "" t)
