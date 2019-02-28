@@ -4,7 +4,7 @@
 
 ;;; Code:
 
-; HOME directory
+;; HOME directory
 (cd (expand-file-name "~"))
 
 ;; packages for init.el
@@ -21,27 +21,27 @@
                (add-to-list 'path-list "C:\\Program Files\\Git\\usr\\bin")
                (string-join path-list ";")))))
 
-; Personal information
+;; Personal information
 (setq user-mail-address "toki@freedom.ne.jp")
 (setq user-full-name "TOKI Yoshinori")
 
-; emacs -q -lした時に、user-emacs-directoryが変わるように
+;; emacs -q -lした時に、user-emacs-directoryが変わるように
 (when load-file-name
     (setq user-emacs-directory (file-name-directory load-file-name)))
 
-; Local emacs-lisp library path
+;; Local emacs-lisp library path
 (add-to-list 'load-path (locate-user-emacs-file "local/work"))
 (add-to-list 'load-path (locate-user-emacs-file "local/patch"))
 (add-to-list 'load-path (locate-user-emacs-file "local/lib"))
 (add-to-list 'load-path (locate-user-emacs-file "local/ruby-test-unit"))
 
-; Emacs Lisp Package Archive
+;; Emacs Lisp Package Archive
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
 (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
 (package-initialize)
 
-; Japanese environment
+;; Japanese environment
 (set-language-environment 'Japanese)
 (set-default-coding-systems 'utf-8)
 (set-terminal-coding-system 'utf-8)
@@ -56,7 +56,7 @@
    '(match ((t (:background "RoyalBlue3" :foreground "brightyellow"))))
    '(region ((t (:background "blue3" :foreground "brightwhite"))))))
 
-; alpha
+;; alpha
 (if (and (eq window-system 'x)
          (>= emacs-major-version 23))
     (progn
@@ -68,11 +68,11 @@
               (background-color . "Black")
               (alpha . (75 50 50 50))
               (font . "Takaoゴシック-17")
-;             (font . "DejaVu Sans Mono-15")
+              ;; (font . "DejaVu Sans Mono-15")
               ))
       (setq default-frame-alist initial-frame-alist)))
 
-; alpha for MS-Windows
+;; alpha for MS-Windows
 (if (eq window-system 'w32)
     (progn
       (setq initial-frame-alist
@@ -82,17 +82,17 @@
               ))
       (setq default-frame-alist initial-frame-alist)))
 
-; Shell mode
+;; Shell mode
 (setq comint-scroll-show-maximum-output t)
 (setq comint-scroll-to-bottom-on-output t)
 
-; Info directories
+;; Info directories
 (setq Info-default-directory-list
       (mapcar
        (lambda (path) (expand-file-name path))
        '("/usr/share/info" "/usr/local/info" "/usr/X11R6/info")))
 
-; User key bindings
+;; User key bindings
 (load "term/bobcat")
 (when (fboundp 'terminal-init-bobcat)
   (terminal-init-bobcat))
@@ -106,19 +106,19 @@
 (global-set-key (kbd "C-\\ C-\\") 'help-for-help)
 (global-set-key (kbd "C-h") 'delete-backward-char)
 
-; Frame title
+;; Frame title
 (setq frame-title-format
       '(multiple-frames ("%b - " invocation-name "@" system-name)
                         ("" invocation-name "@" system-name)))
 
-; Mode line information
+;; Mode line information
 (setq display-time-24hr-format t)
 (setq display-time-day-and-date t)
 (display-time)
 (line-number-mode t)
 (column-number-mode t)
 
-; Replacing
+;; Replacing
 (defun select-query-replace (enable-regexp)
   (interactive "P")
   (let ((args (query-replace-read-args
@@ -129,7 +129,7 @@
       (query-replace (nth 0 args) (nth 1 args)))))
 (global-set-key (kbd "M-%") 'select-query-replace)
 
-; Buffer switching
+;; Buffer switching
 (icomplete-mode)
 (define-key icomplete-minibuffer-map (kbd "C-s") 'icomplete-forward-completions)
 (define-key icomplete-minibuffer-map (kbd "C-r") 'icomplete-backward-completions)
@@ -168,7 +168,7 @@
   (interactive (list (buffer-name)))
   (switch-to-buffer-other-frame (duplicate-buffer base-buffer-name)))
 
-; Window switching
+;; Window switching
 (defun other-window-one-step (previous)
   (interactive "P")
   (if previous
@@ -178,10 +178,10 @@
 (global-set-key (kbd "C-^") 'other-window-one-step)
 (setq truncate-partial-width-windows nil)
 
-; No new lines
+;; No new lines
 (setq next-line-add-newlines nil)
 
-; Timestamp
+;; Timestamp
 (defun insert-timestamp ()
   (interactive)
   (insert (current-time-string)))
@@ -194,7 +194,7 @@
 (global-set-key (kbd "C-c ;") 'insert-current-date)
 (global-set-key (kbd "C-c :") 'insert-current-time)
 
-; C & C++ mode customization
+;; C & C++ mode customization
 (add-hook
  'c-mode-common-hook
  (function
@@ -202,10 +202,10 @@
     (setq c-basic-offset 2)
     (c-set-offset 'substatement 0))))
 
-; Auto compression
+;; Auto compression
 (auto-compression-mode t)
 
-; Perl mode indent customization
+;; Perl mode indent customization
 (setq perl-indent-level                2)
 (setq perl-continued-statement-offset  2)
 (setq perl-continued-brace-offset     -2)
@@ -213,7 +213,7 @@
 (setq perl-brace-imaginary-offset      0)
 (setq perl-label-offset                0)
 
-; LaTeX mode
+;; LaTeX mode
 (setq tex-default-mode 'latex-mode)
 (autoload 'latex-label-insert "latex-label"
   "insertion of a latex label." t)
@@ -223,7 +223,7 @@
   (lambda ()
     (define-key tex-mode-map "\C-cl" 'latex-label-insert))))
 
-; Exciting cite utility
+;; Exciting cite utility
 (autoload 'xcite "xcite" "exciting cite" t)
 (autoload 'xcite-yank-cur-msg "xcite" "exciting cite" t)
 (global-set-key (kbd "C-c c") 'xcite)
@@ -247,7 +247,7 @@
                  (format "%s <%s>" handle id))
                 (t id))))))
 
-; Ruby mode
+;; Ruby mode
 (require 'ruby-test-unit)
 (add-hook 'ruby-mode-hook
           (lambda () (ruby-test-unit-keys)))
@@ -255,17 +255,17 @@
 (setq ruby-program-name
       (concat "ruby " (expand-file-name "/usr/local/bin/irb") " --inf-ruby-mode"))
 
-; Major mode for RDoc editing
+;; Major mode for RDoc editing
 (autoload 'rdoc-mode "rdoc-mode" "Major mode for RD editing." t)
 (setq auto-mode-alist
       (append '(("\\.rd$" . rdoc-mode)
                 ("\\.rd\\.[A-Za-z]*$" . rdoc-mode))
               auto-mode-alist))
 
-; Comparing files
+;; Comparing files
 (setq diff-switches "-u")
 
-; Verilog-HDL mode
+;; Verilog-HDL mode
 (setq use-verilog-mode t)
 (autoload 'verilog-mode "verilog-mode" "verilog mode" t )
 (setq auto-mode-alist
@@ -288,11 +288,11 @@
 (setq verilog-auto-endcomments nil)
 (setq verilog-auto-lineup `(all))
 
-; Shell script mode
+;; Shell script mode
 (setq sh-indentation 2)
 (setq sh-basic-offset 2)
 
-; Fetchmail
+;; Fetchmail
 (autoload 'fetchmail "fetchmail" nil t)
 (setq fetchmail-default-server "freedom")
 (setq fetchmail-server-option-alist
@@ -302,16 +302,16 @@
         ("freedom"  . "mail.freedom.ne.jp")
         ("kobephys" . "sv01.phys.sci.kobe-u.ac.jp")))
 
-; for Bookmark
+;; for Bookmark
 (setq bookmark-search-size 32)
 
-; Grep
+;; Grep
 (setq grep-command "egrep -ne ")
 
-; Parenthesis
+;; Parenthesis
 (show-paren-mode t)
 
-; FLIM
+;; FLIM
 (setq mime-field-decoding-max-size (* 64 1024))
 (setq mime-header-lexical-analyzer      ; http://lists.airs.net/wl/archive/199909/msg00009.html
       '(;eword-analyze-quoted-string
@@ -327,7 +327,7 @@
      (and ad-return-value 
           (setq ad-return-value (eword-decode-string ad-return-value)))))
 
-; SKK
+;; SKK
 (autoload 'skk-mode "skk" nil t)
 (autoload 'skk-auto-fill-mode "skk" nil t)
 (autoload 'skk-isearch-mode-setup "skk-isearch" nil t)
@@ -349,7 +349,7 @@
         ; 記号の追加
         ("!" nil "！")))
 
-; SDIC-mode
+;; SDIC-mode
 (autoload 'sdic-describe-word "sdic"
   "" t nil)
 (autoload 'sdic-describe-word-at-point "sdic"
@@ -381,57 +381,57 @@
                        (title "JGENE")
                        (strategy direct)))))
 
-; Use unzip on zip mode
+;; Use unzip on zip mode
 (setq archive-zip-use-pkzip nil)
 
-; EWB mode
+;; EWB mode
 (autoload 'ewb-mode "ewb-mode" "" t)
 (setq auto-mode-alist
       (append '(("\\.ewb$" . ewb-mode))
               auto-mode-alist))
 
-; disable Tool Bar
-; Xresource => Emacs.toolBar: 0
+;; disable Tool Bar
+;; Xresource => Emacs.toolBar: 0
 (if (>= emacs-major-version 21)
     (tool-bar-mode 0))
 
-; Mouse Wheel mode
+;; Mouse Wheel mode
 (if (>= emacs-major-version 21)
     (mouse-wheel-mode 1))
 
-; patch for ediff
+;; patch for ediff
 (eval-after-load "ediff-init"
   '(defadvice ediff-window-display-p (after disable-window-display activate)
      (setq ad-return-value nil)))
 (if (eq window-system 'w32)
     (setq ediff-force-faces t))
 
-; mini buffer
+;; mini buffer
 (if (eq emacs-major-version 21)
     (setq resize-mini-windows nil))
 
-; for dired
+;; for dired
 (add-hook 'dired-load-hook
           (lambda ()
             (define-key dired-mode-map "W" 'browse-url-of-dired-file)))
 
-; for python
+;; for python
 (setq python-indent 2)
 
-; for VBScript
+;; for VBScript
 (autoload 'visual-basic-mode "visual-basic-mode" "Visual Basic mode." t)
 (setq auto-mode-alist (append '(("\\.\\(frm\\|bas\\|cls\\|vbs\\)$" . 
                                  visual-basic-mode)) auto-mode-alist))
 (setq visual-basic-mode-indent 2)
 
-; Window
+;; Window
 (setq split-width-threshold 300)
 
-; no menu in CUI
+;; no menu in CUI
 (if (not window-system)
     (menu-bar-mode 0))
 
-; memo
+;; memo
 (require 'change-log-markdown)
 (setq change-log-markdown-log-file "/mnt/c/Users/toki/OneDrive/ドキュメント/change-log.md")
 (setq change-log-markdown-header-title "作業メモ")
