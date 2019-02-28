@@ -526,11 +526,11 @@
                                  visual-basic-mode)) auto-mode-alist))
 (setq visual-basic-mode-indent 2)
 
-; for git
-(autoload 'git-blame-mode "git-blame"
-  "Minor mode for incremental blame for Git." t)
-(add-to-list 'vc-handled-backends 'GIT)
-(if (eq system-type 'windows-nt) (setq git-cmd "git.exe"))
+;; ; for git
+;; (autoload 'git-blame-mode "git-blame"
+;;   "Minor mode for incremental blame for Git." t)
+;; (add-to-list 'vc-handled-backends 'GIT)
+;; (if (eq system-type 'windows-nt) (setq git-cmd "git.exe"))
 
 ; Window
 (setq split-width-threshold 300)
@@ -602,6 +602,9 @@ If ARG is true execute `helm-find-files', else do `find-file'."
 (dolist (mode my/disable-trailing-whitespace-mode-list)
   (add-hook (intern (concat (symbol-name mode) "-hook"))
             'my/disable-trailing-whitespace-mode-hook))
+
+;; magit
+(setq magit-git-executable "git")
 
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
