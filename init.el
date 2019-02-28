@@ -1,4 +1,4 @@
-;;; init.el --- initialize emacs
+;;; init.el --- initialize emacs  -*- coding: utf-8 -*-
 
 ;;; Commentary:
 
@@ -21,7 +21,7 @@
 (setq user-mail-address "toki@freedom.ne.jp")
 (setq user-full-name "TOKI Yoshinori")
 
-; emacs -q -l$B$7$?;~$K!"(Buser-emacs-directory$B$,JQ$o$k$h$&$K(B
+; emacs -q -lした時に、user-emacs-directoryが変わるように
 (when load-file-name
     (setq user-emacs-directory (file-name-directory load-file-name)))
 
@@ -138,7 +138,7 @@
               (foreground-color . "White")
               (background-color . "Black")
               (alpha . (75 50 50 50))
-              (font . "Takao$B%4%7%C%/(B-17")
+              (font . "Takaoゴシック-17")
 ;             (font . "DejaVu Sans Mono-15")
               ))
       (setq default-frame-alist initial-frame-alist)))
@@ -316,7 +316,7 @@
                (cond
                 ((or (string-match "^toki@freedom\\.ne\\.jp$" id)
                      (string-match "^toki@.*phys\\(\\.sci\\)?\\.kobe-u\\.ac\\.jp$" id))
-                 (format "$B<+J,(B <%s>" id))
+                 (format "自分 <%s>" id))
                 (handle
                  (format "%s <%s>" handle id))
                 (t id))))))
@@ -417,11 +417,11 @@
        (t "/usr/share/skk/SKK-JISYO.L")))
 (setq skk-rom-kana-rule-list
       '(("hh" "h"
-         ("$B%C(B" . "$B$C(B"))
+         ("ッ" . "っ"))
         ("mm" "m"
-         ("$B%s(B" . "$B$s(B"))
-        ; $B5-9f$NDI2C(B
-        ("!" nil "$B!*(B")))
+         ("ン" . "ん"))
+        ; 記号の追加
+        ("!" nil "！")))
 
 ; SDIC-mode
 (autoload 'sdic-describe-word "sdic"
@@ -541,8 +541,8 @@
 
 ; memo
 (require 'change-log-markdown)
-(setq change-log-markdown-log-file "/mnt/c/Users/toki/OneDrive/$B%I%-%e%a%s%H(B/change-log.md")
-(setq change-log-markdown-header-title "$B:n6H%a%b(B")
+(setq change-log-markdown-log-file "/mnt/c/Users/toki/OneDrive/ドキュメント/change-log.md")
+(setq change-log-markdown-header-title "作業メモ")
 (global-set-key (kbd "C-c 4") nil)
 (global-set-key (kbd "C-c 4 a") 'change-log-markdown-add-entry)
 (add-hook 'markdown-mode-hook
@@ -583,8 +583,8 @@ If ARG is true execute `helm-find-files', else do `find-file'."
 (setq imenu-max-item-length 256)
 
 ;; whitespace
-(setq-default indent-tabs-mode nil)       ; $B%$%s%G%s%H$O%?%V$G$O$J$/%9%Z!<%9$r;HMQ(B
-(setq-default show-trailing-whitespace t) ; $B9TKv$N6uGr$r%O%$%i%$%H(B
+(setq-default indent-tabs-mode nil)       ; インデントはタブではなくスペースを使用
+(setq-default show-trailing-whitespace t) ; 行末の空白をハイライト
 
 (defun my/disable-trailing-whitespace-mode-hook ()
   "Disable show tail whitespace."
