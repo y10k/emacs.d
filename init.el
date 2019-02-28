@@ -38,81 +38,84 @@
   (set-default-coding-systems 'utf-8)
   (set-terminal-coding-system 'utf-8)))
 
-; Font lock mode
-(custom-declare-face
- 'font-lock-builtin-face
- '((((class grayscale) (background light)) (:foreground "lightgray" :bold t))
-   (((class grayscale) (background dark)) (:foreground "dimgray" :bold t))
-   (((class color) (background light)) (:foreground "seagreen"))
-   (((class color) (background dark)) (:foreground "darkolivegreen"))
-   (t (:bold t)))
- "font lock mode face used to highlight builtins."
- :group 'font-lock-highlighting-faces)
-(custom-declare-face
- 'font-lock-string-face
- '((((type tty) (class color)) (:foreground "green"))
-   (((class grayscale) (background light)) (:foreground "dimgray" :italic t))
-   (((class grayscale) (background dark)) (:foreground "lightgray" :italic t))
-   (((class color) (background light)) (:foreground "gray40"))
-   (((class color) (background dark)) (:foreground "lightsalmon"))
-   (t (:italic t)))
- "font lock mode face used to highlight strings."
- :group 'font-lock-highlighting-faces)
-(custom-declare-face
- 'font-lock-variable-name-face
- '((((class grayscale) (background light)) (:foreground "gray90" :bold t :italic t))
-   (((class grayscale) (background dark)) (:foreground "dimgray" :bold t :italic t))
-   (((class color) (background light)) (:foreground "brown"))
-   (((class color) (background dark)) (:foreground "lightgoldenrod"))
-   (t (:bold t :italic t)))
- "font lock mode face used to highlight variable names."
- :group 'font-lock-highlighting-faces)
-(custom-declare-face
- 'info-node
- '((((class grayscale) (background light)) (:foreground "black" :bold t))
-   (((class grayscale) (background dark)) (:foreground "white" :bold t))
-   (((class color) (background light)) (:foreground "purple" :bold t))
-   (((class color) (background dark)) (:foreground "plum1" :bold t))
-   (t (:bold t)))
- "info mode face used to highlight node."
- :group 'font-lock-highlighting-faces)
-(custom-declare-face
- 'info-xref
- '((((class grayscale) (background light)) (:foreground "black" :bold t))
-   (((class grayscale) (background dark)) (:foreground "white" :bold t))
-   (((class color) (background light)) (:foreground "blue" :bold t))
-   (((class color) (background dark)) (:foreground "cyan" :bold t))
-   (t (:bold t)))
- "info mode face used to highlight xref."
- :group 'font-lock-highlighting-faces)
-(custom-declare-face
- 'sh-heredoc-face
- '((((class color) (background light)) (:foreground "sea green"))
-   (((class color) (background dark)) (:foreground "yellow" :bold t))
-   (t (:bold t)))
- "Face to show a here-document"
- :group 'sh-indentation)
-(custom-declare-face
-  'diff-context-face
-  '((((type tty) (class color)) (:foreground "green"))
-    (((class color) (background light)) (:foreground "grey50"))
-    (((class color) (background dark)) (:foreground "grey70"))
-    (t ))
-  "`diff-mode' face used to highlight context and other side-information."
-  :group 'diff-mode)
-(custom-declare-face
- 'comint-highlight-prompt
- '((((background dark)) (:foreground "cyan"))
-   (t (:foreground "cyan")))
- "Face to use to highlight prompt when `comint-highlight-prompt' is non-nil."
- :group 'comint)
-(custom-declare-face
- 'log-view-message-face
- '((((class color) (background light)) (:background "magenta"))
-   (t (:bold t)))
- "Face for the message header line in `log-view-mode'."
- :group 'log-view)
-(global-font-lock-mode t)
+;; color
+(load-theme 'deeper-blue t)
+
+;; ; Font lock mode
+;; (custom-declare-face
+;;  'font-lock-builtin-face
+;;  '((((class grayscale) (background light)) (:foreground "lightgray" :bold t))
+;;    (((class grayscale) (background dark)) (:foreground "dimgray" :bold t))
+;;    (((class color) (background light)) (:foreground "seagreen"))
+;;    (((class color) (background dark)) (:foreground "darkolivegreen"))
+;;    (t (:bold t)))
+;;  "font lock mode face used to highlight builtins."
+;;  :group 'font-lock-highlighting-faces)
+;; (custom-declare-face
+;;  'font-lock-string-face
+;;  '((((type tty) (class color)) (:foreground "green"))
+;;    (((class grayscale) (background light)) (:foreground "dimgray" :italic t))
+;;    (((class grayscale) (background dark)) (:foreground "lightgray" :italic t))
+;;    (((class color) (background light)) (:foreground "gray40"))
+;;    (((class color) (background dark)) (:foreground "lightsalmon"))
+;;    (t (:italic t)))
+;;  "font lock mode face used to highlight strings."
+;;  :group 'font-lock-highlighting-faces)
+;; (custom-declare-face
+;;  'font-lock-variable-name-face
+;;  '((((class grayscale) (background light)) (:foreground "gray90" :bold t :italic t))
+;;    (((class grayscale) (background dark)) (:foreground "dimgray" :bold t :italic t))
+;;    (((class color) (background light)) (:foreground "brown"))
+;;    (((class color) (background dark)) (:foreground "lightgoldenrod"))
+;;    (t (:bold t :italic t)))
+;;  "font lock mode face used to highlight variable names."
+;;  :group 'font-lock-highlighting-faces)
+;; (custom-declare-face
+;;  'info-node
+;;  '((((class grayscale) (background light)) (:foreground "black" :bold t))
+;;    (((class grayscale) (background dark)) (:foreground "white" :bold t))
+;;    (((class color) (background light)) (:foreground "purple" :bold t))
+;;    (((class color) (background dark)) (:foreground "plum1" :bold t))
+;;    (t (:bold t)))
+;;  "info mode face used to highlight node."
+;;  :group 'font-lock-highlighting-faces)
+;; (custom-declare-face
+;;  'info-xref
+;;  '((((class grayscale) (background light)) (:foreground "black" :bold t))
+;;    (((class grayscale) (background dark)) (:foreground "white" :bold t))
+;;    (((class color) (background light)) (:foreground "blue" :bold t))
+;;    (((class color) (background dark)) (:foreground "cyan" :bold t))
+;;    (t (:bold t)))
+;;  "info mode face used to highlight xref."
+;;  :group 'font-lock-highlighting-faces)
+;; (custom-declare-face
+;;  'sh-heredoc-face
+;;  '((((class color) (background light)) (:foreground "sea green"))
+;;    (((class color) (background dark)) (:foreground "yellow" :bold t))
+;;    (t (:bold t)))
+;;  "Face to show a here-document"
+;;  :group 'sh-indentation)
+;; (custom-declare-face
+;;   'diff-context-face
+;;   '((((type tty) (class color)) (:foreground "green"))
+;;     (((class color) (background light)) (:foreground "grey50"))
+;;     (((class color) (background dark)) (:foreground "grey70"))
+;;     (t ))
+;;   "`diff-mode' face used to highlight context and other side-information."
+;;   :group 'diff-mode)
+;; (custom-declare-face
+;;  'comint-highlight-prompt
+;;  '((((background dark)) (:foreground "cyan"))
+;;    (t (:foreground "cyan")))
+;;  "Face to use to highlight prompt when `comint-highlight-prompt' is non-nil."
+;;  :group 'comint)
+;; (custom-declare-face
+;;  'log-view-message-face
+;;  '((((class color) (background light)) (:background "magenta"))
+;;    (t (:bold t)))
+;;  "Face for the message header line in `log-view-mode'."
+;;  :group 'log-view)
+;; (global-font-lock-mode t)
 
 ; alpha
 (if (and (eq window-system 'x)
@@ -130,16 +133,17 @@
               ))
       (setq default-frame-alist initial-frame-alist)))
 
-; for Meadow at MS-Windows
+; alpha for MS-Windows
 (if (eq window-system 'w32)
     (progn
       (setq initial-frame-alist
-            '((width . 100)
-              (height . 42)
-              (cursor-color . "Navy")
-              (foreground-color . "Black")
-              (background-color . "OldLace")
-              (alpha . (90 70 70 70))))
+            '((width . 160)
+              (height . 53)
+              ;; (cursor-color . "Navy")
+              ;; (foreground-color . "Black")
+              ;; (background-color . "OldLace")
+              (alpha . (90 60 60 60))
+              ))
       (setq default-frame-alist initial-frame-alist)))
 
 ; Shell mode
@@ -597,17 +601,17 @@ If ARG is true execute `helm-find-files', else do `find-file'."
 (put 'downcase-region 'disabled nil)
 (put 'narrow-to-region 'disabled nil)
 (put 'set-goal-column 'disabled nil)
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "Black" :foreground "White" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 113 :width normal :foundry "unknown" :family "DejaVu Sans Mono"))))
- '(font-lock-builtin-face ((t (:foreground "brightblue"))))
- '(font-lock-keyword-face ((t (:foreground "cyan"))))
- '(helm-selection ((t (:background "ForestGreen" :foreground "brightyellow"))))
- '(match ((t (:background "RoyalBlue3" :foreground "brightyellow"))))
- '(region ((t (:background "blue3" :foreground "brightwhite")))))
+;; (custom-set-faces
+;;  ;; custom-set-faces was added by Custom.
+;;  ;; If you edit it by hand, you could mess it up, so be careful.
+;;  ;; Your init file should contain only one such instance.
+;;  ;; If there is more than one, they won't work right.
+;;  '(default ((t (:inherit nil :stipple nil :background "Black" :foreground "White" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 113 :width normal :foundry "unknown" :family "DejaVu Sans Mono"))))
+;;  '(font-lock-builtin-face ((t (:foreground "brightblue"))))
+;;  '(font-lock-keyword-face ((t (:foreground "cyan"))))
+;;  '(helm-selection ((t (:background "ForestGreen" :foreground "brightyellow"))))
+;;  '(match ((t (:background "RoyalBlue3" :foreground "brightyellow"))))
+;;  '(region ((t (:background "blue3" :foreground "brightwhite")))))
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
