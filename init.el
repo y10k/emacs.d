@@ -548,6 +548,8 @@
 
 ;; flycheck
 (add-hook 'after-init-hook 'global-flycheck-mode)
+(add-hook 'ruby-mode-hook
+          (lambda () (flycheck-mode 1))) ; force flycheck enable on tramp
 
 ;; git-gutter
 (global-git-gutter-mode t)
