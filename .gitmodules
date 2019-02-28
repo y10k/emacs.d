@@ -1,0 +1,3 @@
+[submodule "local/ruby-test-unit"]
+	path = local/ruby-test-unit
+	url = git@github.com:y10k/ruby-test-unit.el.git
