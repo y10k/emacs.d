@@ -410,9 +410,11 @@
 (global-set-key (kbd "C-x j") (function skk-auto-fill-mode))
 (add-hook 'isearch-mode-hook (function skk-isearch-mode-setup))
 (add-hook 'isearch-mode-end-hook (function skk-isearch-mode-cleanup))
-(setq skk-large-jisyo "/usr/share/skk/SKK-JISYO.L")
-(if (eq system-type 'windows-nt)
-    (setq skk-large-jisyo (concat (getenv "SystemDrive") skk-large-jisyo)))
+(setq skk-large-jisyo
+      (cond
+       ((eq system-type 'windows-nt)
+        (expand-file-name "~/skk/SKK-JISYO.L"))
+       (t "/usr/share/skk/SKK-JISYO.L")))
 (setq skk-rom-kana-rule-list
       '(("hh" "h"
          ("ッ" . "っ"))
