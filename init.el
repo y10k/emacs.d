@@ -7,6 +7,10 @@
 ;; HOME directory
 (cd (expand-file-name "~"))
 
+;; Personal information
+(setq user-mail-address "toki@freedom.ne.jp")
+(setq user-full-name "TOKI Yoshinori")
+
 ;; packages for init.el
 (require 'subr-x)
 
@@ -21,9 +25,16 @@
                (add-to-list 'path-list "C:\\Program Files\\Git\\usr\\bin")
                (string-join path-list ";")))))
 
-;; Personal information
-(setq user-mail-address "toki@freedom.ne.jp")
-(setq user-full-name "TOKI Yoshinori")
+;; emacs auto settings
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(ange-ftp-try-passive-mode t)
+ '(package-selected-packages
+   (quote
+    (ddskk magit helm-swoop helm helm-git-grep auto-complete flycheck git-gutter inf-ruby yari yaml-mode markdown-mode))))
 
 ;; emacs -q -lした時に、user-emacs-directoryが変わるように
 (when load-file-name
@@ -505,18 +516,10 @@ If ARG is true execute `helm-find-files', else do `find-file'."
     (setq tramp-ssh-controlmaster-options
           "-tt -o ControlMaster=auto -o ControlPath=/tmp/tramp.%%C -o ControlPersist=no"))
 
+;; emacs auto settings
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
 (put 'narrow-to-region 'disabled nil)
 (put 'set-goal-column 'disabled nil)
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(ange-ftp-try-passive-mode t)
- '(package-selected-packages
-   (quote
-    (ddskk magit helm-swoop helm helm-git-grep auto-complete flycheck git-gutter inf-ruby yari yaml-mode markdown-mode))))
 
 ;;; init.el ends here
