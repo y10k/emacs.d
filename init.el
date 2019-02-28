@@ -606,6 +606,11 @@ If ARG is true execute `helm-find-files', else do `find-file'."
 ;; magit
 (setq magit-git-executable "git")
 
+;; tramp
+(if (eq system-type 'windows-nt)
+    (setq tramp-ssh-controlmaster-options
+          "-tt -o ControlMaster=auto -o ControlPath=/tmp/tramp.%%C -o ControlPersist=no"))
+
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
 (put 'narrow-to-region 'disabled nil)
