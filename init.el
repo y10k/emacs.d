@@ -39,14 +39,8 @@
 
 ; Japanese environment
 (set-language-environment 'Japanese)
-(cond
- ; Coding sytem
- ((eq system-type 'windows-nt)
-  (set-default-coding-systems 'japanese-shift-jis)
-  (set-terminal-coding-system 'japanese-shift-jis))
- (t
-  (set-default-coding-systems 'utf-8)
-  (set-terminal-coding-system 'utf-8)))
+(set-default-coding-systems 'utf-8)
+(set-terminal-coding-system 'utf-8)
 
 ;; color
 (load-theme 'deeper-blue t)
