@@ -616,6 +616,6 @@ If ARG is true execute `helm-find-files', else do `find-file'."
  '(ange-ftp-try-passive-mode t)
  '(package-selected-packages
    (quote
-    (magit helm-swoop helm helm-git-grep auto-complete flycheck git-gutter inf-ruby yari yaml-mode markdown-mode))))
+    (ddskk magit helm-swoop helm helm-git-grep auto-complete flycheck git-gutter inf-ruby yari yaml-mode markdown-mode))))
 
 ;;; init.el ends here
