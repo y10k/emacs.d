@@ -19,6 +19,7 @@
 (add-to-list 'load-path (locate-user-emacs-file "local/work"))
 (add-to-list 'load-path (locate-user-emacs-file "local/patch"))
 (add-to-list 'load-path (locate-user-emacs-file "local/lib"))
+(add-to-list 'load-path (locate-user-emacs-file "local/ruby-test-unit"))
 
 ; Emacs Lisp Package Archive
 (require 'package)
