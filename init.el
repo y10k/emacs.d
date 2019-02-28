@@ -56,82 +56,6 @@
    '(match ((t (:background "RoyalBlue3" :foreground "brightyellow"))))
    '(region ((t (:background "blue3" :foreground "brightwhite"))))))
 
-;; ; Font lock mode
-;; (custom-declare-face
-;;  'font-lock-builtin-face
-;;  '((((class grayscale) (background light)) (:foreground "lightgray" :bold t))
-;;    (((class grayscale) (background dark)) (:foreground "dimgray" :bold t))
-;;    (((class color) (background light)) (:foreground "seagreen"))
-;;    (((class color) (background dark)) (:foreground "darkolivegreen"))
-;;    (t (:bold t)))
-;;  "font lock mode face used to highlight builtins."
-;;  :group 'font-lock-highlighting-faces)
-;; (custom-declare-face
-;;  'font-lock-string-face
-;;  '((((type tty) (class color)) (:foreground "green"))
-;;    (((class grayscale) (background light)) (:foreground "dimgray" :italic t))
-;;    (((class grayscale) (background dark)) (:foreground "lightgray" :italic t))
-;;    (((class color) (background light)) (:foreground "gray40"))
-;;    (((class color) (background dark)) (:foreground "lightsalmon"))
-;;    (t (:italic t)))
-;;  "font lock mode face used to highlight strings."
-;;  :group 'font-lock-highlighting-faces)
-;; (custom-declare-face
-;;  'font-lock-variable-name-face
-;;  '((((class grayscale) (background light)) (:foreground "gray90" :bold t :italic t))
-;;    (((class grayscale) (background dark)) (:foreground "dimgray" :bold t :italic t))
-;;    (((class color) (background light)) (:foreground "brown"))
-;;    (((class color) (background dark)) (:foreground "lightgoldenrod"))
-;;    (t (:bold t :italic t)))
-;;  "font lock mode face used to highlight variable names."
-;;  :group 'font-lock-highlighting-faces)
-;; (custom-declare-face
-;;  'info-node
-;;  '((((class grayscale) (background light)) (:foreground "black" :bold t))
-;;    (((class grayscale) (background dark)) (:foreground "white" :bold t))
-;;    (((class color) (background light)) (:foreground "purple" :bold t))
-;;    (((class color) (background dark)) (:foreground "plum1" :bold t))
-;;    (t (:bold t)))
-;;  "info mode face used to highlight node."
-;;  :group 'font-lock-highlighting-faces)
-;; (custom-declare-face
-;;  'info-xref
-;;  '((((class grayscale) (background light)) (:foreground "black" :bold t))
-;;    (((class grayscale) (background dark)) (:foreground "white" :bold t))
-;;    (((class color) (background light)) (:foreground "blue" :bold t))
-;;    (((class color) (background dark)) (:foreground "cyan" :bold t))
-;;    (t (:bold t)))
-;;  "info mode face used to highlight xref."
-;;  :group 'font-lock-highlighting-faces)
-;; (custom-declare-face
-;;  'sh-heredoc-face
-;;  '((((class color) (background light)) (:foreground "sea green"))
-;;    (((class color) (background dark)) (:foreground "yellow" :bold t))
-;;    (t (:bold t)))
-;;  "Face to show a here-document"
-;;  :group 'sh-indentation)
-;; (custom-declare-face
-;;   'diff-context-face
-;;   '((((type tty) (class color)) (:foreground "green"))
-;;     (((class color) (background light)) (:foreground "grey50"))
-;;     (((class color) (background dark)) (:foreground "grey70"))
-;;     (t ))
-;;   "`diff-mode' face used to highlight context and other side-information."
-;;   :group 'diff-mode)
-;; (custom-declare-face
-;;  'comint-highlight-prompt
-;;  '((((background dark)) (:foreground "cyan"))
-;;    (t (:foreground "cyan")))
-;;  "Face to use to highlight prompt when `comint-highlight-prompt' is non-nil."
-;;  :group 'comint)
-;; (custom-declare-face
-;;  'log-view-message-face
-;;  '((((class color) (background light)) (:background "magenta"))
-;;    (t (:bold t)))
-;;  "Face for the message header line in `log-view-mode'."
-;;  :group 'log-view)
-;; (global-font-lock-mode t)
-
 ; alpha
 (if (and (eq window-system 'x)
          (>= emacs-major-version 23))
@@ -154,9 +78,6 @@
       (setq initial-frame-alist
             '((width . 160)
               (height . 53)
-              ;; (cursor-color . "Navy")
-              ;; (foreground-color . "Black")
-              ;; (background-color . "OldLace")
               (alpha . (90 60 60 60))
               ))
       (setq default-frame-alist initial-frame-alist)))
@@ -463,34 +384,6 @@
 ; Use unzip on zip mode
 (setq archive-zip-use-pkzip nil)
 
-;; ; WWW browser
-;; (setq w3m-coding-system
-;;       (cond
-;;        ((eq system-type 'windows-nt) 'shift_jis-dos)
-;;        (t 'utf-8)))
-;; (setq browse-url-browser-function 'browse-url-mozilla)
-;; (setq mime-setup-enable-inline-html nil)
-;; (autoload 'w3m "w3m" "Interface for w3m on Emacs." t)
-;; (autoload 'w3m-find-file "w3m" "w3m Interface function for local file." t)
-;; (autoload 'w3m-browse-url "w3m" "Ask a WWW browser to show a URL." t)
-;; (eval-after-load "w3m"
-;;   '(defadvice w3m-reload-this-page (around no-cache activate)
-;;      (let ((w3m-command-arguments
-;;             (append w3m-command-arguments
-;;                     '("-header" "Pragma: no-cache"
-;;                       "-header" "Cache-Control: no-cache"))))
-;;        ad-do-it)))
-;; (global-set-key (kbd "C-x m") 'browse-url-at-point)
-;; (setq shimbun-asahi-url "http://www.asahi.com/")
-;; (setq shimbun-asahi-html-url "http://www.asahi.com/")
-;; (custom-declare-face
-;;  'w3m-form-face
-;;  '((((class color) (background light)) (:foreground "red" :underline t))
-;;    (((class color) (background dark)) (:foreground "red" :underline t))
-;;    (t (:underline t)))
-;;  "*Face to fontify forms."
-;;  :group 'w3m-face)
-
 ; EWB mode
 (autoload 'ewb-mode "ewb-mode" "" t)
 (setq auto-mode-alist
@@ -530,12 +423,6 @@
 (setq auto-mode-alist (append '(("\\.\\(frm\\|bas\\|cls\\|vbs\\)$" . 
                                  visual-basic-mode)) auto-mode-alist))
 (setq visual-basic-mode-indent 2)
-
-;; ; for git
-;; (autoload 'git-blame-mode "git-blame"
-;;   "Minor mode for incremental blame for Git." t)
-;; (add-to-list 'vc-handled-backends 'GIT)
-;; (if (eq system-type 'windows-nt) (setq git-cmd "git.exe"))
 
 ; Window
 (setq split-width-threshold 300)
