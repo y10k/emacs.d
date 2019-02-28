@@ -7,6 +7,16 @@
 ; HOME directory
 (cd (expand-file-name "~"))
 
+;; path for MS-Windows
+(require 'subr-x)
+(delete "C:/WINDOWS/System32/OpenSSH/" exec-path)
+(add-to-list 'exec-path "C:/Program Files/Git/usr/bin" t)
+(setenv "PATH"
+        (let ((path-list (split-string (getenv "PATH") ";")))
+          (delete "C:\\WINDOWS\\System32\\OpenSSH\\" path-list)
+          (add-to-list 'path-list "C:\\Program Files\\Git\\usr\\bin")
+          (string-join path-list ";")))
+
 ; Personal information
 (setq user-mail-address "toki@freedom.ne.jp")
 (setq user-full-name "TOKI Yoshinori")
