@@ -47,7 +47,8 @@
 (set-terminal-coding-system 'utf-8)
 
 ;; color
-(load-theme 'deeper-blue t)
+(if window-system
+    (load-theme 'deeper-blue t))
 
 ;; ; Font lock mode
 ;; (custom-declare-face
