@@ -116,9 +116,10 @@
 ;; Mode line information
 (setq display-time-24hr-format t)
 (setq display-time-day-and-date t)
-(display-time)
+(display-time-mode t)
 (line-number-mode t)
 (column-number-mode t)
+(size-indication-mode t)
 
 ;; Replacing
 (defun select-query-replace (enable-regexp)
