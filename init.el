@@ -69,21 +69,20 @@
 
 ;; frame size & alpha
 (if window-system
-    (let ((frame-alist
-           (cond
-            ((and (eq window-system 'x) (>= emacs-major-version 23))
-             '((width . 170)
-               (height . 51)
-               (alpha . (75 50 50 50))
-               (font . "MS Gothic-12")
-               ))
-            ((eq window-system 'w32)
-             '((width . 160)
-               (height . 53)
-               (alpha . (90 60 60 60))
-               )))))
-      (setq initial-frame-alist frame-alist)
-      (setq default-frame-alist frame-alist)))
+    (cond
+     ((and (eq window-system 'x) (>= emacs-major-version 23))
+      (modify-all-frames-parameters
+       '((width . 170)
+         (height . 51)
+         (alpha . (75 50 50 50))
+         (font . "MS Gothic-12")
+         )))
+     ((eq window-system 'w32)
+      (modify-all-frames-parameters
+       '((width . 160)
+         (height . 53)
+         (alpha . (90 60 60 60))
+         )))))
 
 ;; frame title
 (setq frame-title-format
