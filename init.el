@@ -72,14 +72,10 @@
     (let ((frame-alist
            (cond
             ((and (eq window-system 'x) (>= emacs-major-version 23))
-             '((width . 180)
-               (height . 55)
-               (cursor-color . "Green")
-               (foreground-color . "White")
-               (background-color . "Black")
+             '((width . 170)
+               (height . 51)
                (alpha . (75 50 50 50))
-               (font . "Takaoゴシック-17")
-               ;; (font . "DejaVu Sans Mono-15")
+               (font . "MS Gothic-12")
                ))
             ((eq window-system 'w32)
              '((width . 160)
