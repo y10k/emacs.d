@@ -69,20 +69,26 @@
 
 ;; frame size & alpha
 (if window-system
-    (cond
-     ((and (eq window-system 'x) (>= emacs-major-version 23))
-      (modify-all-frames-parameters
-       '((width . 170)
-         (height . 51)
-         (alpha . (75 50 50 50))
-         (font . "MS Gothic-12")
-         )))
-     ((eq window-system 'w32)
-      (modify-all-frames-parameters
-       '((width . 160)
-         (height . 53)
-         (alpha . (90 60 60 60))
-         )))))
+    (let* ((workarea-pixel-list (alist-get 'workarea (car (display-monitor-attributes-list))))
+           (workarea-pixel-width (nth 2 workarea-pixel-list))
+           (workarea-pixel-height (nth 3 workarea-pixel-list))
+           (workarea-pixel-size (list workarea-pixel-width workarea-pixel-height)))
+      (cond
+       ((and (eq window-system 'x) (>= emacs-major-version 23))
+        (modify-all-frames-parameters '((alpha . (75 50 50 50))))
+        (cond
+         ((equal workarea-pixel-size '(1800 1200))
+          (modify-all-frames-parameters
+           '((width . 170)
+             (height . 51)
+             (font . "MS Gothic-12"))))))
+       ((eq window-system 'w32)
+        (modify-all-frames-parameters '((alpha . (90 60 60 60))))
+        (cond
+         ((equal workarea-pixel-size '(1800 1200))
+          (modify-all-frames-parameters
+           '((width . 160)
+             (height . 53)))))))))
 
 ;; frame title
 (setq frame-title-format
