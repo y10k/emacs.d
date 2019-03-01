@@ -87,8 +87,9 @@
         (cond
          ((equal geometry-pixel-size '(1800 1200))
           (modify-all-frames-parameters
-           '((width . 160)
-             (height . 53)))))))))
+           '((width . 170)
+             (height . 53)
+             (font . "ＭＳ ゴシック-12")))))))))
 
 ;; frame title
 (setq frame-title-format
