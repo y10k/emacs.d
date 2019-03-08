@@ -264,6 +264,8 @@
 (setq ruby-test-unit-runner-options "--no-use-color") ; for test-unit on ruby-2.2.0 or later.
 (setq ruby-program-name
       (concat "ruby " (expand-file-name "/usr/local/bin/irb") " --inf-ruby-mode"))
+(setq yari-ri-program-name "bundle exec ri")
+(setq yari-ruby-program-name "bundle exec ruby")
 
 ;; Major mode for RDoc editing
 (autoload 'rdoc-mode "rdoc-mode" "Major mode for RD editing." t)
