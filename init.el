@@ -322,6 +322,7 @@
 
 ;; Parenthesis
 (show-paren-mode t)
+(setq show-paren-style 'mixed)
 
 ;; FLIM
 (setq mime-field-decoding-max-size (* 64 1024))
