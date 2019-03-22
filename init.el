@@ -81,7 +81,9 @@
           (modify-all-frames-parameters
            '((width . 170)
              (height . 51)
-             (font . "MS Gothic-12"))))))
+             (font . "MS Gothic-12")))
+          (push '(left . 30) initial-frame-alist)
+          (push '(top . 50) initial-frame-alist))))
        ((eq window-system 'w32)
         (modify-all-frames-parameters '((alpha . (90 60 60 60))))
         (cond
