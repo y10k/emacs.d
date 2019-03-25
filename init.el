@@ -25,6 +25,12 @@
                (add-to-list 'path-list "C:\\Program Files\\Git\\usr\\bin")
                (string-join path-list ";")))))
 
+;; Info directories
+(setq Info-default-directory-list
+      (mapcar
+       (lambda (path) (expand-file-name path))
+       '("/usr/share/info" "/usr/local/info" "/usr/X11R6/info")))
+
 ;; emacs auto settings
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -98,15 +104,36 @@
       '(multiple-frames ("%b - " invocation-name "@" system-name)
                         ("" invocation-name "@" system-name)))
 
-;; Shell mode
-(setq comint-scroll-show-maximum-output t)
-(setq comint-scroll-to-bottom-on-output t)
+;; Window
+(setq split-width-threshold 300)
 
-;; Info directories
-(setq Info-default-directory-list
-      (mapcar
-       (lambda (path) (expand-file-name path))
-       '("/usr/share/info" "/usr/local/info" "/usr/X11R6/info")))
+;; mini buffer
+(if (eq emacs-major-version 21)
+    (setq resize-mini-windows nil))
+
+;; Mouse Wheel mode
+(if (>= emacs-major-version 21)
+    (mouse-wheel-mode 1))
+
+;; disable Tool Bar
+;; Xresource => Emacs.toolBar: 0
+(if (>= emacs-major-version 21)
+    (tool-bar-mode 0))
+
+;; no menu in CUI
+(if (not window-system)
+    (menu-bar-mode 0))
+
+;; No new lines
+(setq next-line-add-newlines nil)
+
+;; Mode line information
+(setq display-time-24hr-format t)
+(setq display-time-day-and-date t)
+(display-time-mode t)
+(line-number-mode t)
+(column-number-mode t)
+(size-indication-mode t)
 
 ;; User key bindings
 (load "term/bobcat")
@@ -121,14 +148,6 @@
 (global-set-key (kbd "C-\\") 'help-command)
 (global-set-key (kbd "C-\\ C-\\") 'help-for-help)
 (global-set-key (kbd "C-h") 'delete-backward-char)
-
-;; Mode line information
-(setq display-time-24hr-format t)
-(setq display-time-day-and-date t)
-(display-time-mode t)
-(line-number-mode t)
-(column-number-mode t)
-(size-indication-mode t)
 
 ;; Replacing
 (defun select-query-replace (enable-regexp)
@@ -190,9 +209,6 @@
 (global-set-key (kbd "C-^") 'other-window-one-step)
 (setq truncate-partial-width-windows nil)
 
-;; No new lines
-(setq next-line-add-newlines nil)
-
 ;; Timestamp
 (defun insert-timestamp ()
   (interactive)
@@ -205,6 +221,10 @@
   (insert (format-time-string "%H:%M:%S" (current-time))))
 (global-set-key (kbd "C-c ;") 'insert-current-date)
 (global-set-key (kbd "C-c :") 'insert-current-time)
+
+;; Shell mode
+(setq comint-scroll-show-maximum-output t)
+(setq comint-scroll-to-bottom-on-output t)
 
 ;; C & C++ mode customization
 (add-hook
@@ -405,25 +425,12 @@
       (append '(("\\.ewb$" . ewb-mode))
               auto-mode-alist))
 
-;; disable Tool Bar
-;; Xresource => Emacs.toolBar: 0
-(if (>= emacs-major-version 21)
-    (tool-bar-mode 0))
-
-;; Mouse Wheel mode
-(if (>= emacs-major-version 21)
-    (mouse-wheel-mode 1))
-
 ;; patch for ediff
 (eval-after-load "ediff-init"
   '(defadvice ediff-window-display-p (after disable-window-display activate)
      (setq ad-return-value nil)))
 (if (eq window-system 'w32)
     (setq ediff-force-faces t))
-
-;; mini buffer
-(if (eq emacs-major-version 21)
-    (setq resize-mini-windows nil))
 
 ;; for dired
 (add-hook 'dired-load-hook
@@ -438,13 +445,6 @@
 (setq auto-mode-alist (append '(("\\.\\(frm\\|bas\\|cls\\|vbs\\)$" . 
                                  visual-basic-mode)) auto-mode-alist))
 (setq visual-basic-mode-indent 2)
-
-;; Window
-(setq split-width-threshold 300)
-
-;; no menu in CUI
-(if (not window-system)
-    (menu-bar-mode 0))
 
 ;; memo
 (require 'change-log-markdown)
