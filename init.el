@@ -40,7 +40,7 @@
  '(ange-ftp-try-passive-mode t)
  '(package-selected-packages
    (quote
-    (powerline ddskk magit helm-swoop helm helm-git-grep auto-complete flycheck git-gutter inf-ruby yari yaml-mode markdown-mode))))
+    (undo-tree powerline ddskk magit helm-swoop helm helm-git-grep auto-complete flycheck git-gutter inf-ruby yari yaml-mode markdown-mode))))
 
 ;; emacs -q -lした時に、user-emacs-directoryが変わるように
 (when load-file-name
@@ -529,6 +529,10 @@ If ARG is true execute `helm-find-files', else do `find-file'."
 (if (eq system-type 'windows-nt)
     (setq tramp-ssh-controlmaster-options
           "-tt -o ControlMaster=auto -o ControlPath=/tmp/tramp.%%C -o ControlPersist=no"))
+
+;; undo-tree
+(require 'undo-tree)
+(global-undo-tree-mode t)
 
 ;; emacs auto settings
 (put 'upcase-region 'disabled nil)
