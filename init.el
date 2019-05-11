@@ -124,9 +124,6 @@
 (if (not window-system)
     (menu-bar-mode 0))
 
-;; No new lines
-(setq next-line-add-newlines nil)
-
 ;; Mode line information
 (setq display-time-24hr-format t)
 (setq display-time-day-and-date t)
@@ -134,6 +131,13 @@
 (line-number-mode t)
 (column-number-mode t)
 (size-indication-mode t)
+
+;; No new lines
+(setq next-line-add-newlines nil)
+
+;; Parenthesis
+(show-paren-mode t)
+(setq show-paren-style 'mixed)
 
 ;; User key bindings
 (load "term/bobcat")
@@ -341,10 +345,6 @@
 
 ;; Grep
 (setq grep-command "egrep -ne ")
-
-;; Parenthesis
-(show-paren-mode t)
-(setq show-paren-style 'mixed)
 
 ;; FLIM
 (setq mime-field-decoding-max-size (* 64 1024))
