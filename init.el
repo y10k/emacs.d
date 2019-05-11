@@ -40,7 +40,7 @@
  '(ange-ftp-try-passive-mode t)
  '(package-selected-packages
    (quote
-    (ddskk magit helm-swoop helm helm-git-grep auto-complete flycheck git-gutter inf-ruby yari yaml-mode markdown-mode))))
+    (powerline ddskk magit helm-swoop helm helm-git-grep auto-complete flycheck git-gutter inf-ruby yari yaml-mode markdown-mode))))
 
 ;; emacs -q -lした時に、user-emacs-directoryが変わるように
 (when load-file-name
@@ -125,6 +125,8 @@
     (menu-bar-mode 0))
 
 ;; Mode line information
+(require 'powerline)
+(powerline-default-theme)
 (setq display-time-24hr-format t)
 (setq display-time-day-and-date t)
 (display-time-mode t)
