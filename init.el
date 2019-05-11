@@ -135,9 +135,15 @@
 ;; No new lines
 (setq next-line-add-newlines nil)
 
+;; Scroll 1 by 1
+(setq mouse-wheel-scroll-amount '(1 ((shift) . 5)))
+
 ;; Parenthesis
 (show-paren-mode t)
 (setq show-paren-style 'mixed)
+
+;; Region highlighting
+(transient-mark-mode 1)
 
 ;; User key bindings
 (load "term/bobcat")
