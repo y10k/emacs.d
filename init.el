@@ -40,7 +40,7 @@
  '(ange-ftp-try-passive-mode t)
  '(package-selected-packages
    (quote
-    (volatile-highlights undo-tree powerline ddskk magit helm-swoop helm helm-git-grep auto-complete flycheck git-gutter inf-ruby yari yaml-mode markdown-mode))))
+    (unfill volatile-highlights undo-tree powerline ddskk magit helm-swoop helm helm-git-grep auto-complete flycheck git-gutter inf-ruby yari yaml-mode markdown-mode))))
 
 ;; emacs -q -lした時に、user-emacs-directoryが変わるように
 (when load-file-name
