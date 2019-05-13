@@ -40,7 +40,7 @@
  '(ange-ftp-try-passive-mode t)
  '(package-selected-packages
    (quote
-    (unfill volatile-highlights undo-tree powerline ddskk magit helm-swoop helm helm-git-grep auto-complete flycheck git-gutter inf-ruby yari yaml-mode markdown-mode))))
+    (highlight-indent-guides unfill volatile-highlights undo-tree powerline ddskk magit helm-swoop helm helm-git-grep auto-complete flycheck git-gutter inf-ruby yari yaml-mode markdown-mode))))
 
 ;; emacs -q -lした時に、user-emacs-directoryが変わるように
 (when load-file-name
@@ -549,6 +549,9 @@ If ARG is true execute `helm-find-files', else do `find-file'."
 (setq smtpmail-default-smtp-server "smtp.gmail.com")
 (setq smtpmail-smtp-server "smtp.gmail.com")
 (setq smtpmail-smtp-service 587)
+
+;; highlight-indent-guides
+(add-hook 'yaml-mode-hook 'highlight-indent-guides-mode)
 
 ;; emacs auto settings
 (put 'upcase-region 'disabled nil)
