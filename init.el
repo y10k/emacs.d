@@ -538,6 +538,17 @@ If ARG is true execute `helm-find-files', else do `find-file'."
 (require 'volatile-highlights)
 (volatile-highlights-mode t)
 
+;; gnus for gmail
+(setq gnus-select-method '(nnimap "gmail"
+                                  (nnimap-user "yr10ki@gmail.com")
+                                  (nnimap-address "imap.gmail.com")
+                                  (nnimap-server-port 993)
+                                  (nnimap-stream ssl)))
+(setq message-send-mail-function 'smtpmail-send-it)
+(setq smtpmail-default-smtp-server "smtp.gmail.com")
+(setq smtpmail-smtp-server "smtp.gmail.com")
+(setq smtpmail-smtp-service 587)
+
 ;; emacs auto settings
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
