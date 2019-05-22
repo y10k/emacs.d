@@ -394,6 +394,8 @@
         ("!" nil "！")))
 
 ;; SDIC-mode
+(if (>= emacs-major-version 26)
+    (defvaralias 'default-fill-column 'fill-column))
 (autoload 'sdic-describe-word "sdic"
   "" t nil)
 (autoload 'sdic-describe-word-at-point "sdic"
@@ -553,6 +555,9 @@ If ARG is true execute `helm-find-files', else do `find-file'."
 ;; highlight-indent-guides
 (add-hook 'yaml-mode-hook 'highlight-indent-guides-mode)
 
+;; vc-mode
+(setq vc-git-print-log-follow t)
+
 ;; emacs auto settings
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
@@ -560,3 +565,9 @@ If ARG is true execute `helm-find-files', else do `find-file'."
 (put 'set-goal-column 'disabled nil)
 
 ;;; init.el ends here
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
