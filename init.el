@@ -40,7 +40,9 @@
  '(ange-ftp-try-passive-mode t)
  '(package-selected-packages
    (quote
-    (quickrun wanderlust helm-ls-git highlight-indent-guides unfill volatile-highlights undo-tree powerline ddskk magit helm-swoop helm helm-git-grep auto-complete flycheck git-gutter inf-ruby yari yaml-mode markdown-mode))))
+    (quickrun wanderlust helm-ls-git highlight-indent-guides unfill volatile-highlights undo-tree powerline ddskk magit helm-swoop helm helm-git-grep auto-complete flycheck git-gutter inf-ruby yari yaml-mode markdown-mode)))
+ '(safe-local-variable-values (quote ((frozen_string_literal . true))))
+ )
 
 ;; emacs -q -lした時に、user-emacs-directoryが変わるように
 (when load-file-name
