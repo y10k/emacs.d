@@ -564,9 +564,3 @@ If ARG is true execute `helm-find-files', else do `find-file'."
 (put 'set-goal-column 'disabled nil)
 
 ;;; init.el ends here
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
