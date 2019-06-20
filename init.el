@@ -559,6 +559,9 @@ If ARG is true execute `helm-find-files', else do `find-file'."
 ;; vc-mode
 (setq vc-git-print-log-follow t)
 
+;; quickrun
+(setq quickrun-timeout-seconds 30)
+
 ;; emacs auto settings
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
