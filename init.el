@@ -499,6 +499,7 @@ If ARG is true execute `helm-find-files', else do `find-file'."
 (global-set-key (kbd "C-x C-f") 'select-find-file)         ; replace helm command
 (global-set-key (kbd "M-x") 'helm-M-x)                     ; replace helm command
 (global-set-key (kbd "ESC M-x") 'execute-extended-command) ; backup original command
+(global-set-key (kbd "ESC M-y") 'helm-show-kill-ring)
 
 ;; imenu
 (setq imenu-max-item-length 256)
