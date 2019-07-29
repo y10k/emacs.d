@@ -127,8 +127,10 @@
     (menu-bar-mode 0))
 
 ;; Mode line information
-(require 'powerline)
-(powerline-default-theme)
+(if window-system
+    (progn
+      (require 'powerline)
+      (powerline-default-theme)))
 (setq display-time-24hr-format t)
 (setq display-time-day-and-date t)
 (display-time-mode t)
