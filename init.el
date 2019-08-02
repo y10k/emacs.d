@@ -415,10 +415,10 @@
          (setcar (cdr sdic-dictionary)
                  (expand-file-name (cadr sdic-dictionary)))
          sdic-dictionary)
-       '((sdicf-client "~/dict/gene.sdic.gz"
+       `((sdicf-client ,(locate-user-emacs-file "dict/gene.sdic.gz")
                        (title "GENE")
                        (strategy direct))
-         (sdicf-client "~/dict/eedict.sdic.gz"
+         (sdicf-client ,(locate-user-emacs-file "dict/eedict.sdic.gz")
                        (title "EEDICT")
                        (strategy direct)))))
 (setq sdic-waei-dictionary-list
@@ -427,10 +427,10 @@
          (setcar (cdr sdic-dictionary)
                  (expand-file-name (cadr sdic-dictionary)))
          sdic-dictionary)
-       '((sdicf-client "~/dict/jedict.sdic.gz"
+       `((sdicf-client ,(locate-user-emacs-file "dict/jedict.sdic.gz")
                        (title "JEDICT")
                        (strategy direct))
-         (sdicf-client "~/dict/jgene.sdic.gz"
+         (sdicf-client ,(locate-user-emacs-file "dict/jgene.sdic.gz")
                        (title "JGENE")
                        (strategy direct)))))
 
