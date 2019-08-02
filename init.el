@@ -115,30 +115,30 @@
 
 ; alpha
 (if (and (eq window-system 'x)
-	 (>= emacs-major-version 23))
+         (>= emacs-major-version 23))
     (progn
       (setq initial-frame-alist
-	    '((width . 180)
-	      (height . 55)
-	      (cursor-color . "Green")
-	      (foreground-color . "White")
-	      (background-color . "Black")
-	      (alpha . (75 50 50 50))
-	      (font . "Takaoゴシック-17")
-;	      (font . "DejaVu Sans Mono-15")
-	      ))
+            '((width . 180)
+              (height . 55)
+              (cursor-color . "Green")
+              (foreground-color . "White")
+              (background-color . "Black")
+              (alpha . (75 50 50 50))
+              (font . "Takaoゴシック-17")
+;             (font . "DejaVu Sans Mono-15")
+              ))
       (setq default-frame-alist initial-frame-alist)))
 
 ; for Meadow at MS-Windows
 (if (eq window-system 'w32)
     (progn
       (setq initial-frame-alist
-	    '((width . 100)
-	      (height . 42)
-	      (cursor-color . "Navy")
-	      (foreground-color . "Black")
-	      (background-color . "OldLace")
-	      (alpha . (90 70 70 70))))
+            '((width . 100)
+              (height . 42)
+              (cursor-color . "Navy")
+              (foreground-color . "Black")
+              (background-color . "OldLace")
+              (alpha . (90 70 70 70))))
       (setq default-frame-alist initial-frame-alist)))
 
 ; Shell mode
@@ -153,9 +153,9 @@
 (cond
  ((eq system-type 'windows-nt)
   (setq Info-directory-list
-	(mapcar
-	 (lambda (path) (expand-file-name path))
-	 '("/usr/local/Meadow/1.14/info" "/usr/local/info")))))
+        (mapcar
+         (lambda (path) (expand-file-name path))
+         '("/usr/local/Meadow/1.14/info" "/usr/local/info")))))
 
 ; User key bindings
 (load "term/bobcat")
@@ -164,9 +164,9 @@
 (if (boundp 'minibuffer-local-filename-completion-map)
     (progn
       (define-key minibuffer-local-filename-completion-map " "
-	'minibuffer-complete-word)
+        'minibuffer-complete-word)
       (define-key minibuffer-local-must-match-filename-map " "
-	'minibuffer-complete-word)))
+        'minibuffer-complete-word)))
 (global-set-key (kbd "C-\\") 'help-command)
 (global-set-key (kbd "C-\\ C-\\") 'help-for-help)
 (global-set-key (kbd "C-h") 'delete-backward-char)
@@ -174,7 +174,7 @@
 ; Frame title
 (setq frame-title-format
       '(multiple-frames ("%b - " invocation-name "@" system-name)
-			("" invocation-name "@" system-name)))
+                        ("" invocation-name "@" system-name)))
 
 ; Mode line information
 (setq display-time-24hr-format t)
@@ -187,10 +187,10 @@
 (defun select-query-replace (enable-regexp)
   (interactive "P")
   (let ((args (query-replace-read-args
-	       (if enable-regexp "Query replace regexp" "Query replace")
-	       (if enable-regexp t nil))))
+               (if enable-regexp "Query replace regexp" "Query replace")
+               (if enable-regexp t nil))))
     (if enable-regexp
-	(query-replace-regexp (nth 0 args) (nth 1 args))
+        (query-replace-regexp (nth 0 args) (nth 1 args))
       (query-replace (nth 0 args) (nth 1 args)))))
 (global-set-key (kbd "M-%") 'select-query-replace)
 
@@ -199,9 +199,9 @@
   (interactive "P")
   (if enable-hexl
       (funcall (function hexl-find-file)
-	       (read-file-name "Filename: " nil nil t))
+               (read-file-name "Filename: " nil nil t))
     (funcall (function find-file)
-	     (read-file-name "Find file: " nil nil nil))))
+             (read-file-name "Find file: " nil nil nil))))
 (global-set-key (kbd "C-x C-f") 'select-find-file)
 
 ; Buffer switching
@@ -227,10 +227,10 @@
 (defun duplicate-buffer (base-buffer-name)
   (let ((base-buffer (get-buffer base-buffer-name)))
     (let ((default-major-mode (cdr (assq 'major-mode
-					 (buffer-local-variables base-buffer))))
-	  (copy-buffer (make-indirect-buffer base-buffer
-					     (generate-new-buffer-name
-					      (concat "*" base-buffer-name " (copy)*")))))
+                                         (buffer-local-variables base-buffer))))
+          (copy-buffer (make-indirect-buffer base-buffer
+                                             (generate-new-buffer-name
+                                              (concat "*" base-buffer-name " (copy)*")))))
       (set-buffer-major-mode copy-buffer)
       copy-buffer)))
 (defun copy-buffer (base-buffer-name)
@@ -314,13 +314,13 @@
        (format "{Message ID} %s\n" msgid))
    (if id
        (format "%s wrote...\n"
-	       (cond
-		((or (string-match "^toki@freedom\\.ne\\.jp$" id)
-		     (string-match "^toki@.*phys\\(\\.sci\\)?\\.kobe-u\\.ac\\.jp$" id))
-		 (format "自分 <%s>" id))
-		(handle
-		 (format "%s <%s>" handle id))
-		(t id))))))
+               (cond
+                ((or (string-match "^toki@freedom\\.ne\\.jp$" id)
+                     (string-match "^toki@.*phys\\(\\.sci\\)?\\.kobe-u\\.ac\\.jp$" id))
+                 (format "自分 <%s>" id))
+                (handle
+                 (format "%s <%s>" handle id))
+                (t id))))))
 
 ; Ruby mode
 (require 'ruby-test-unit)
@@ -334,8 +334,8 @@
 (autoload 'rdoc-mode "rdoc-mode" "Major mode for RD editing." t)
 (setq auto-mode-alist
       (append '(("\\.rd$" . rdoc-mode)
-		("\\.rd\\.[A-Za-z]*$" . rdoc-mode))
-	      auto-mode-alist))
+                ("\\.rd\\.[A-Za-z]*$" . rdoc-mode))
+              auto-mode-alist))
 
 ; Comparing files
 (setq diff-switches "-u")
@@ -345,10 +345,10 @@
 (autoload 'verilog-mode "verilog-mode" "verilog mode" t )
 (setq auto-mode-alist
       (append '(("\\.v\\'" . verilog-mode)
-		("\\.tv\\'" . verilog-mode)
-		("\\.dv\\'" . verilog-mode)
-		("\\.vlg\\'" . verilog-mode)
-		("\\.vei\\'" . verilog-mode)) auto-mode-alist))
+                ("\\.tv\\'" . verilog-mode)
+                ("\\.dv\\'" . verilog-mode)
+                ("\\.vlg\\'" . verilog-mode)
+                ("\\.vei\\'" . verilog-mode)) auto-mode-alist))
 (setq verilog-indent-level             2)
 (setq verilog-indent-level-module      2)
 (setq verilog-indent-level-declaration 2)
@@ -374,8 +374,8 @@
       '(("sv01.phys.sci.kobe-u.ac.jp" "--check")))
 (setq fetchmail-server-alias-alist
       '(("homesrv"  . "babayaga.plutonia.ne.jp")
-	("freedom"  . "mail.freedom.ne.jp")
-	("kobephys" . "sv01.phys.sci.kobe-u.ac.jp")))
+        ("freedom"  . "mail.freedom.ne.jp")
+        ("kobephys" . "sv01.phys.sci.kobe-u.ac.jp")))
 
 ; for Bookmark
 (setq bookmark-search-size 32)
@@ -388,7 +388,7 @@
 
 ; FLIM
 (setq mime-field-decoding-max-size (* 64 1024))
-(setq mime-header-lexical-analyzer	; http://lists.airs.net/wl/archive/199909/msg00009.html
+(setq mime-header-lexical-analyzer      ; http://lists.airs.net/wl/archive/199909/msg00009.html
       '(;eword-analyze-quoted-string
         eword-analyze-domain-literal
         eword-analyze-comment
@@ -396,11 +396,11 @@
         eword-analyze-special
         eword-analyze-encoded-word
         eword-analyze-atom))
-(eval-after-load "mime"			; http://lists.airs.net/wl/archive/199909/msg00031.html
+(eval-after-load "mime"                 ; http://lists.airs.net/wl/archive/199909/msg00031.html
   '(defadvice mime-entity-filename (around mime-decode activate)
      ad-do-it
      (and ad-return-value 
-	  (setq ad-return-value (eword-decode-string ad-return-value)))))
+          (setq ad-return-value (eword-decode-string ad-return-value)))))
 
 ; SKK
 (autoload 'skk-mode "skk" nil t)
@@ -416,11 +416,11 @@
     (setq skk-large-jisyo (concat (getenv "SystemDrive") skk-large-jisyo)))
 (setq skk-rom-kana-rule-list
       '(("hh" "h"
-	 ("ッ" . "っ"))
-	("mm" "m"
-	 ("ン" . "ん"))
-	; 記号の追加
-	("!" nil "！")))
+         ("ッ" . "っ"))
+        ("mm" "m"
+         ("ン" . "ん"))
+        ; 記号の追加
+        ("!" nil "！")))
 
 ; SDIC-mode
 (autoload 'sdic-describe-word "sdic"
@@ -432,27 +432,27 @@
 (setq sdic-eiwa-dictionary-list
       (mapcar
        (lambda (sdic-dictionary)
-	 (setcar (cdr sdic-dictionary)
-		 (expand-file-name (cadr sdic-dictionary)))
-	 sdic-dictionary)
+         (setcar (cdr sdic-dictionary)
+                 (expand-file-name (cadr sdic-dictionary)))
+         sdic-dictionary)
        '((sdicf-client "~/dict/gene.sdic.gz"
-		       (title "GENE")
-		       (strategy direct))
-	 (sdicf-client "~/dict/eedict.sdic.gz"
-		       (title "EEDICT")
-		       (strategy direct)))))
+                       (title "GENE")
+                       (strategy direct))
+         (sdicf-client "~/dict/eedict.sdic.gz"
+                       (title "EEDICT")
+                       (strategy direct)))))
 (setq sdic-waei-dictionary-list
       (mapcar
        (lambda (sdic-dictionary)
-	 (setcar (cdr sdic-dictionary)
-		 (expand-file-name (cadr sdic-dictionary)))
-	 sdic-dictionary)
+         (setcar (cdr sdic-dictionary)
+                 (expand-file-name (cadr sdic-dictionary)))
+         sdic-dictionary)
        '((sdicf-client "~/dict/jedict.sdic.gz"
-		       (title "JEDICT")
-		       (strategy direct))
-	 (sdicf-client "~/dict/jgene.sdic.gz"
-		       (title "JGENE")
-		       (strategy direct)))))
+                       (title "JEDICT")
+                       (strategy direct))
+         (sdicf-client "~/dict/jgene.sdic.gz"
+                       (title "JGENE")
+                       (strategy direct)))))
 
 ; Use unzip on zip mode
 (setq archive-zip-use-pkzip nil)
@@ -470,9 +470,9 @@
 (eval-after-load "w3m"
   '(defadvice w3m-reload-this-page (around no-cache activate)
      (let ((w3m-command-arguments
-	    (append w3m-command-arguments
-		    '("-header" "Pragma: no-cache"
-		      "-header" "Cache-Control: no-cache"))))
+            (append w3m-command-arguments
+                    '("-header" "Pragma: no-cache"
+                      "-header" "Cache-Control: no-cache"))))
        ad-do-it)))
 (global-set-key (kbd "C-x m") 'browse-url-at-point)
 (setq shimbun-asahi-url "http://www.asahi.com/")
@@ -489,7 +489,7 @@
 (autoload 'ewb-mode "ewb-mode" "" t)
 (setq auto-mode-alist
       (append '(("\\.ewb$" . ewb-mode))
-	      auto-mode-alist))
+              auto-mode-alist))
 
 ; disable Tool Bar
 ; Xresource => Emacs.toolBar: 0
@@ -513,8 +513,8 @@
 
 ; for dired
 (add-hook 'dired-load-hook
-	  (lambda ()
-	    (define-key dired-mode-map "W" 'browse-url-of-dired-file)))
+          (lambda ()
+            (define-key dired-mode-map "W" 'browse-url-of-dired-file)))
 
 ; for python
 (setq python-indent 2)
@@ -522,7 +522,7 @@
 ; for VBScript
 (autoload 'visual-basic-mode "visual-basic-mode" "Visual Basic mode." t)
 (setq auto-mode-alist (append '(("\\.\\(frm\\|bas\\|cls\\|vbs\\)$" . 
-				 visual-basic-mode)) auto-mode-alist))
+                                 visual-basic-mode)) auto-mode-alist))
 (setq visual-basic-mode-indent 2)
 
 ; for git
