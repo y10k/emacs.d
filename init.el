@@ -164,11 +164,7 @@
 (when (fboundp 'terminal-init-bobcat)
   (terminal-init-bobcat))
 (if (boundp 'minibuffer-local-filename-completion-map)
-    (progn
-      (define-key minibuffer-local-filename-completion-map " "
-        'minibuffer-complete-word)
-      (define-key minibuffer-local-must-match-filename-map " "
-        'minibuffer-complete-word)))
+    (define-key minibuffer-local-filename-completion-map " " 'minibuffer-complete-word))
 (global-set-key (kbd "C-\\") 'help-command)
 (global-set-key (kbd "C-\\ C-\\") 'help-for-help)
 (global-set-key (kbd "C-h") 'delete-backward-char)
