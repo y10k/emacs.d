@@ -91,7 +91,15 @@
              (height . 51)
              (font . "MS Gothic-12")))
           (push '(left . 30) initial-frame-alist)
-          (push '(top . 50) initial-frame-alist))))
+          (push '(top . 50) initial-frame-alist)))
+        (cond
+         ((equal geometry-pixel-size '(2560 1440))
+          (modify-all-frames-parameters
+           '((width . 200)
+             (height . 51)
+             (font . "MS Gothic-12")))
+          (push '(left . 80) initial-frame-alist)
+          (push '(top . 70) initial-frame-alist))))
        ((eq window-system 'w32)
         (modify-all-frames-parameters '((alpha . (90 60 60 60))))
         (cond
