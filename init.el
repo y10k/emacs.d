@@ -95,7 +95,7 @@
            (geometry-pixel-height (nth 3 geometry-pixel-list))
            (geometry-pixel-size (list geometry-pixel-width geometry-pixel-height)))
       (cond
-       ((and (eq window-system 'x) (>= emacs-major-version 23))
+       ((and (eq window-system 'x))
         (modify-all-frames-parameters '((alpha . (75 50 50 50))))
         (cond
          ((equal geometry-pixel-size '(1800 1200))
@@ -129,19 +129,18 @@
 
 ;; Window
 (setq split-width-threshold 300)
+(setq truncate-partial-width-windows nil)
 
 ;; mini buffer
-(if (eq emacs-major-version 21)
-    (setq resize-mini-windows nil))
+(setq resize-mini-windows nil)
 
 ;; Mouse Wheel mode
-(if (>= emacs-major-version 21)
-    (mouse-wheel-mode 1))
+(mouse-wheel-mode 1)
+(setq mouse-wheel-scroll-amount '(1 ((shift) . 5))) ; Scroll 1 by 1
 
 ;; disable Tool Bar
 ;; Xresource => Emacs.toolBar: 0
-(if (>= emacs-major-version 21)
-    (tool-bar-mode 0))
+(tool-bar-mode 0)
 
 ;; no menu in CUI
 (if (not window-system)
@@ -161,9 +160,6 @@
 
 ;; No new lines
 (setq next-line-add-newlines nil)
-
-;; Scroll 1 by 1
-(setq mouse-wheel-scroll-amount '(1 ((shift) . 5)))
 
 ;; Parenthesis
 (show-paren-mode t)
@@ -230,7 +226,6 @@
     (other-window 1)))
 (global-set-key (kbd "M-o") 'other-window-one-step)
 (global-set-key (kbd "C-^") 'other-window-one-step)
-(setq truncate-partial-width-windows nil)
 
 ;; Timestamp
 (defun insert-timestamp ()
