@@ -578,6 +578,9 @@ If ARG is true execute `helm-find-files', else do `find-file'."
 ;; compilation
 (setq compilation-scroll-output t)
 
+;; kill emacs
+(setq confirm-kill-emacs 'yes-or-no-p)
+
 ;; emacs auto settings
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
