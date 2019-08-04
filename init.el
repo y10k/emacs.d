@@ -130,6 +130,7 @@
 ;; Window
 (setq split-width-threshold 300)
 (setq truncate-partial-width-windows nil)
+(winner-mode 1)                         ; history
 
 ;; mini buffer
 (setq resize-mini-windows nil)
