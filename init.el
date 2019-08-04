@@ -187,7 +187,6 @@
 (icomplete-mode)
 (define-key icomplete-minibuffer-map (kbd "C-s") 'icomplete-forward-completions)
 (define-key icomplete-minibuffer-map (kbd "C-r") 'icomplete-backward-completions)
-(global-set-key (kbd "C-x C-b") 'helm-buffers-list)
 (defadvice switch-to-buffer (before strict-buffer-name activate)
   (interactive (list (read-buffer "Switch to buffer: " (other-buffer) t))))
 (defadvice switch-to-buffer-other-window (before strict-buffer-name activate)
@@ -504,8 +503,9 @@ If ARG is true execute `helm-find-files', else do `find-file'."
       (funcall (function find-file)
                (read-file-name "Find file: " nil nil nil))
     (helm-find-files arg)))
-(global-set-key (kbd "C-x C-f") 'select-find-file)         ; replace helm command
-(global-set-key (kbd "M-x") 'helm-M-x)                     ; replace helm command
+(global-set-key (kbd "C-x C-f") 'select-find-file)         ; replace to helm command
+(global-set-key (kbd "M-x") 'helm-M-x)                     ; replace to helm command
+(global-set-key (kbd "C-x C-b") 'helm-buffers-list)        ; replace to helm command
 (global-set-key (kbd "ESC M-x") 'execute-extended-command) ; backup original command
 (global-set-key (kbd "ESC M-y") 'helm-show-kill-ring)
 
