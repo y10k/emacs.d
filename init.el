@@ -68,6 +68,16 @@
 (set-language-environment 'Japanese)
 (prefer-coding-system 'utf-8)
 
+;; User basic key bindings
+(load "term/bobcat")
+(when (fboundp 'terminal-init-bobcat)
+  (terminal-init-bobcat))
+(if (boundp 'minibuffer-local-filename-completion-map)
+    (define-key minibuffer-local-filename-completion-map " " 'minibuffer-complete-word))
+(global-set-key (kbd "C-\\") 'help-command)
+(global-set-key (kbd "C-\\ C-\\") 'help-for-help)
+(global-set-key (kbd "C-h") 'delete-backward-char)
+
 ;; color
 (if window-system
     (load-theme 'deeper-blue t)
@@ -161,16 +171,6 @@
 
 ;; Region highlighting
 (transient-mark-mode 1)
-
-;; User key bindings
-(load "term/bobcat")
-(when (fboundp 'terminal-init-bobcat)
-  (terminal-init-bobcat))
-(if (boundp 'minibuffer-local-filename-completion-map)
-    (define-key minibuffer-local-filename-completion-map " " 'minibuffer-complete-word))
-(global-set-key (kbd "C-\\") 'help-command)
-(global-set-key (kbd "C-\\ C-\\") 'help-for-help)
-(global-set-key (kbd "C-h") 'delete-backward-char)
 
 ;; Replacing
 (defun select-query-replace (enable-regexp)
