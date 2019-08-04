@@ -55,6 +55,9 @@
 (add-to-list 'load-path (locate-user-emacs-file "local/ruby-test-unit"))
 
 ;; Emacs Lisp Package Archive
+;; 初回起動時にやらないといけないこと:
+;;   (1) M-x package-refresh-contents
+;;   (2) M-x package-install-selected-packages
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/") t)
