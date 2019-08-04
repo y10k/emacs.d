@@ -168,6 +168,9 @@
 ;; Region highlighting
 (transient-mark-mode 1)
 
+;; Be quiet on save
+(setq save-silently t)
+
 ;; Replacing
 (defun select-query-replace (enable-regexp)
   (interactive "P")
