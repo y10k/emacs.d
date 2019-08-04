@@ -575,6 +575,9 @@ If ARG is true execute `helm-find-files', else do `find-file'."
 (setq recentf-auto-save-timer (run-with-idle-timer 30 t 'recentf-save-list)) ; start timer and save the timer object for `cancel-timer'
 (recentf-mode 1)
 
+;; compilation
+(setq compilation-scroll-output t)
+
 ;; emacs auto settings
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
