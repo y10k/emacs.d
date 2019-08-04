@@ -52,7 +52,7 @@
 (add-to-list 'load-path (locate-user-emacs-file "local/work"))
 (add-to-list 'load-path (locate-user-emacs-file "local/patch"))
 (add-to-list 'load-path (locate-user-emacs-file "local/lib"))
-(add-to-list 'load-path (locate-user-emacs-file "local/ruby-test-unit"))
+(add-to-list 'load-path (locate-user-emacs-file "local/ruby-test-unit")) ; need for `git submodule update -i'
 
 ;; Emacs Lisp Package Archive
 ;; 初回起動時にやらないといけないこと:
