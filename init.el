@@ -537,6 +537,7 @@ If ARG is true execute `helm-find-files', else do `find-file'."
 (setq magit-git-executable "git")
 (defadvice magit-status (after magit-fullscreen activate)
   (delete-other-windows))
+(global-set-key (kbd "C-x g") 'magit-status)
 
 ;; tramp
 (if (eq system-type 'windows-nt)
