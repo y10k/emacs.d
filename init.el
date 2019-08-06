@@ -535,26 +535,6 @@
 (with-eval-after-load "magit"
   (setq magit-completing-read-function 'ivy-completing-read))
 
-;; replaced from helm-ls-git
-(ivy-set-actions
- 'counsel-git-ls
- '(("j" find-file-other-window "other window")
-   ("f" find-file-other-frame "other frame")))
-(defun counsel-git-ls (&optional initial-input)
-  "Find file in the current Git repository.
-When INITIAL-INPUT is non-nil, use it in the minibuffer during completion."
-  (interactive)
-  (let* ((default-directory (locate-dominating-file
-                             default-directory ".git"))
-         (candidate-git-files (split-string
-                               (shell-command-to-string
-                                "git ls-files --full-name --")
-                               "\n")))
-    (ivy-read "Git files: " candidate-git-files
-              :initial-input initial-input
-              :action #'find-file
-              :caller 'counsel-git-ls)))
-
 ;; prescient
 (require 'prescient)
 (prescient-persist-mode 1)
