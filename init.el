@@ -12,6 +12,7 @@
 (setq user-full-name "TOKI Yoshinori")
 
 ;; packages for init.el
+(require 'seq)
 (require 'subr-x)
 
 ;; path for MS-Windows
@@ -40,9 +41,8 @@
  '(ange-ftp-try-passive-mode t)
  '(package-selected-packages
    (quote
-    (quickrun wanderlust helm-ls-git highlight-indent-guides unfill volatile-highlights undo-tree powerline ddskk magit helm-swoop helm helm-git-grep auto-complete flycheck git-gutter inf-ruby yari yaml-mode markdown-mode)))
- '(safe-local-variable-values (quote ((frozen_string_literal . true))))
- )
+    (ivy-prescient prescient counsel swiper ivy quickrun wanderlust highlight-indent-guides unfill volatile-highlights undo-tree powerline ddskk magit auto-complete flycheck git-gutter inf-ruby yari yaml-mode markdown-mode)))
+ '(safe-local-variable-values (quote ((frozen_string_literal . true)))))
 
 ;; emacs -q -lした時に、user-emacs-directoryが変わるように
 (when load-file-name
@@ -84,7 +84,6 @@
   (custom-set-faces
    '(font-lock-builtin-face ((t (:foreground "brightblue"))))
    '(font-lock-keyword-face ((t (:foreground "cyan"))))
-   '(helm-selection ((t (:background "ForestGreen" :foreground "brightyellow"))))
    '(match ((t (:background "RoyalBlue3" :foreground "brightyellow"))))
    '(region ((t (:background "blue3" :foreground "brightwhite"))))))
 
@@ -184,9 +183,6 @@
 (global-set-key (kbd "M-%") 'select-query-replace)
 
 ;; Buffer switching
-(icomplete-mode)
-(define-key icomplete-minibuffer-map (kbd "C-s") 'icomplete-forward-completions)
-(define-key icomplete-minibuffer-map (kbd "C-r") 'icomplete-backward-completions)
 (defadvice switch-to-buffer (before strict-buffer-name activate)
   (interactive (list (read-buffer "Switch to buffer: " (other-buffer) t))))
 (defadvice switch-to-buffer-other-window (before strict-buffer-name activate)
@@ -493,21 +489,57 @@
 (setq ac-use-menu-map t)
 (setq ac-ignore-case nil)
 
-;; Helm
-(require 'helm-config)
-(defun select-find-file (arg)
-  "Select `find-file' function.
-If ARG is true execute `helm-find-files', else do `find-file'."
-  (interactive "P")
-  (if arg
-      (funcall (function find-file)
-               (read-file-name "Find file: " nil nil nil))
-    (helm-find-files arg)))
-(global-set-key (kbd "C-x C-f") 'select-find-file)         ; replace to helm command
-(global-set-key (kbd "M-x") 'helm-M-x)                     ; replace to helm command
-(global-set-key (kbd "C-x C-b") 'helm-buffers-list)        ; replace to helm command
+;; ivy
+(require 'ivy)
+(ivy-mode 1)
+(setq ivy-height 30)
+(setq ivy-use-virtual-buffers t)
+(setq ivy-re-builders-alist '((t . ivy--regex-ignore-order)))
+(setq ivy-initial-inputs-alist
+      (seq-remove
+       (lambda (initial-input-pair)
+         (let ((initial-input-name (car initial-input-pair)))
+           (or (string-prefix-p "counsel-" (symbol-name initial-input-name))
+               (seq-contains '(Man-completion-table woman) initial-input-name))))
+       ivy-initial-inputs-alist))
+(defun ivy--sort-by-len (name candidates)
+  "Sort CANDIDATES based on similarity of their length with NAME."
+  (let ((name-len (length name))
+        (candidates-count (length candidates)))
+    (if (< 500 candidates-count)
+        candidates
+      (seq-sort-by (lambda (candidate-string)
+                     (cons candidate-string
+                           (abs (- name-len (length candidate-string)))))
+                   (lambda (a b)
+                     (if (not (= (cdr a) (cdr b)))
+                         (< (cdr a) (cdr b))
+                       (string< (car a) (car b))))
+                   candidates))))
+(dolist (i '(counsel-M-x
+             counsel-apropos
+             counsel-describe-function
+             counsel-describe-variable
+             counsel-describe-face))
+  (setf (alist-get i ivy-sort-matches-functions-alist) 'ivy--sort-by-len))
+
+;; swiper
+(require 'swiper)
+
+;; counsel
+(require 'counsel)
+(counsel-mode 1)
+(global-set-key (kbd "M-x") 'counsel-M-x)                  ; replace to counsel command
+(global-set-key (kbd "C-x C-b") 'ivy-switch-buffer)        ; replace to counsel command
 (global-set-key (kbd "ESC M-x") 'execute-extended-command) ; backup original command
-(global-set-key (kbd "ESC M-y") 'helm-show-kill-ring)
+(with-eval-after-load "magit"
+  (setq magit-completing-read-function 'ivy-completing-read))
+
+;; prescient
+(require 'prescient)
+(prescient-persist-mode 1)
+(require 'ivy-prescient)
+(ivy-prescient-mode 1)
 
 ;; imenu
 (setq imenu-max-item-length 256)
@@ -526,7 +558,6 @@ If ARG is true execute `helm-find-files', else do `find-file'."
     eww-mode
     completion-setup
     vc-git-log-view-mode
-    helm-major-mode
     compilation-mode))
 
 (dolist (mode my/disable-trailing-whitespace-mode-list)
