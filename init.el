@@ -183,12 +183,6 @@
 (global-set-key (kbd "M-%") 'select-query-replace)
 
 ;; Buffer switching
-(defadvice switch-to-buffer (before strict-buffer-name activate)
-  (interactive (list (read-buffer "Switch to buffer: " (other-buffer) t))))
-(defadvice switch-to-buffer-other-window (before strict-buffer-name activate)
-  (interactive (list (read-buffer "Switch to buffer in other window: " (other-buffer) t))))
-(defadvice switch-to-buffer-other-frame (before strict-buffer-name activate)
-  (interactive (list (read-buffer "Switch to buffer in other frame: " (other-buffer) t))))
 (defun make-buffer (buffer-name)
   (interactive (list (read-buffer "New buffer: " nil nil)))
   (switch-to-buffer (get-buffer-create buffer-name)))
