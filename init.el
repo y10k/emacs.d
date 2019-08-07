@@ -434,13 +434,6 @@
       (append '(("\\.ewb$" . ewb-mode))
               auto-mode-alist))
 
-;; patch for ediff
-(eval-after-load "ediff-init"
-  '(defadvice ediff-window-display-p (after disable-window-display activate)
-     (setq ad-return-value nil)))
-(if (eq window-system 'w32)
-    (setq ediff-force-faces t))
-
 ;; for dired
 (add-hook 'dired-load-hook
           (lambda ()
