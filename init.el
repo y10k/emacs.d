@@ -194,12 +194,13 @@
   (switch-to-buffer-other-frame (get-buffer-create buffer-name)))
 (defun duplicate-buffer (base-buffer-name)
   (let ((base-buffer (get-buffer base-buffer-name)))
-    (let ((default-major-mode (cdr (assq 'major-mode
-                                         (buffer-local-variables base-buffer))))
+    (let ((copy-major-mode (alist-get 'major-mode
+                                      (buffer-local-variables base-buffer)))
           (copy-buffer (make-indirect-buffer base-buffer
                                              (generate-new-buffer-name
                                               (concat "*" base-buffer-name " (copy)*")))))
-      (set-buffer-major-mode copy-buffer)
+      (with-current-buffer copy-buffer
+        (funcall copy-major-mode))
       copy-buffer)))
 (defun copy-buffer (base-buffer-name)
   (interactive (list (buffer-name)))
