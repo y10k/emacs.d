@@ -544,6 +544,20 @@
 (prescient-persist-mode 1)
 (require 'ivy-prescient)
 (ivy-prescient-mode 1)
+(defun my-advice/ivy-prescient-sort-function-by-dictionary-order (adviced-sort-function c1 c2)
+  "Around advice function for `ivy-prescient-sort-function'.
+This advice sorts candidates by dictionary order.
+ADVICED-SORT-FUNCTION is original function.
+C1 and C2 is original arguments."
+  (or (funcall adviced-sort-function c1 c2)
+      (progn
+        (when (listp c1)
+          (setq c1 (car c1)))
+        (when (listp c2)
+          (setq c2 (car c2)))
+        (and (= (length c1) (length c2))
+             (string< c1 c2)))))
+(advice-add 'ivy-prescient-sort-function :around #'my-advice/ivy-prescient-sort-function-by-dictionary-order)
 
 ;; imenu
 (setq imenu-max-item-length 256)
