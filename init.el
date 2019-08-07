@@ -182,7 +182,7 @@
       (query-replace (nth 0 args) (nth 1 args)))))
 (global-set-key (kbd "M-%") 'select-query-replace)
 
-;; Buffer switching
+;; Add buffer operations
 (defun make-buffer (buffer-name)
   (interactive (list (read-buffer "New buffer: " nil nil)))
   (switch-to-buffer (get-buffer-create buffer-name)))
