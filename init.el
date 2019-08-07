@@ -571,8 +571,11 @@ C1 and C2 is original arguments."
 
 ;; magit
 (setq magit-git-executable "git")
-(defadvice magit-status (after magit-fullscreen activate)
+(defun my-advice/magit-status-full-window (&rest args)
+  "After advice for `magit-status'.
+ARGS is original arguments."
   (delete-other-windows))
+(advice-add 'magit-status :after #'my-advice/magit-status-full-window)
 (global-set-key (kbd "C-x g") 'magit-status)
 
 ;; tramp
