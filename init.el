@@ -213,13 +213,7 @@
   (switch-to-buffer-other-frame (duplicate-buffer base-buffer-name)))
 
 ;; Window switching
-(defun other-window-one-step (previous)
-  (interactive "P")
-  (if previous
-      (other-window -1)
-    (other-window 1)))
-(global-set-key (kbd "M-o") 'other-window-one-step)
-(global-set-key (kbd "C-^") 'other-window-one-step)
+(global-set-key (kbd "M-o") 'other-window)
 
 ;; Timestamp
 (defun insert-timestamp ()
