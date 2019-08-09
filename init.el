@@ -102,16 +102,18 @@
            '((width . 170)
              (height . 51)
              (font . "MS Gothic-12")))
-          (push '(left . 30) initial-frame-alist)
-          (push '(top . 50) initial-frame-alist)))
+          (dolist (i '((left . 30)
+                       (top . 50)))
+            (setf (alist-get (car i) initial-frame-alist) (cdr i)))))
         (cond
          ((equal geometry-pixel-size '(2560 1440))
           (modify-all-frames-parameters
            '((width . 200)
              (height . 51)
              (font . "MS Gothic-12")))
-          (push '(left . 80) initial-frame-alist)
-          (push '(top . 70) initial-frame-alist))))
+          (dolist (i '((left . 80)
+                       (top . 70)))
+            (setf (alist-get (car i) initial-frame-alist) (cdr i))))))
        ((eq window-system 'w32)
         (modify-all-frames-parameters '((alpha . (90 60 60 60))))
         (cond
