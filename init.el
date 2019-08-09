@@ -401,26 +401,18 @@
       (mapcar
        (lambda (sdic-dictionary)
          (setcar (cdr sdic-dictionary)
-                 (expand-file-name (cadr sdic-dictionary)))
+                 (expand-file-name (locate-user-emacs-file (cadr sdic-dictionary))))
          sdic-dictionary)
-       `((sdicf-client ,(locate-user-emacs-file "dict/gene.sdic.gz")
-                       (title "GENE")
-                       (strategy direct))
-         (sdicf-client ,(locate-user-emacs-file "dict/eedict.sdic.gz")
-                       (title "EEDICT")
-                       (strategy direct)))))
+       '((sdicf-client "dict/gene.sdic.gz" (title "GENE") (strategy direct))
+         (sdicf-client "dict/eedict.sdic.gz" (title "EEDICT") (strategy direct)))))
 (setq sdic-waei-dictionary-list
       (mapcar
        (lambda (sdic-dictionary)
          (setcar (cdr sdic-dictionary)
-                 (expand-file-name (cadr sdic-dictionary)))
+                 (expand-file-name (locate-user-emacs-file (cadr sdic-dictionary))))
          sdic-dictionary)
-       `((sdicf-client ,(locate-user-emacs-file "dict/jedict.sdic.gz")
-                       (title "JEDICT")
-                       (strategy direct))
-         (sdicf-client ,(locate-user-emacs-file "dict/jgene.sdic.gz")
-                       (title "JGENE")
-                       (strategy direct)))))
+       '((sdicf-client "dict/jedict.sdic.gz" (title "JEDICT") (strategy direct))
+         (sdicf-client "dict/jgene.sdic.gz" (title "JGENE") (strategy direct)))))
 
 ;; Use unzip on zip mode
 (setq archive-zip-use-pkzip nil)
