@@ -520,6 +520,14 @@
                    "; "))
 (with-eval-after-load "magit"
   (setq magit-completing-read-function 'ivy-completing-read))
+(defun counsel-git-grep-other-window (&rest args)
+  "Go to occurrence X in current Git repository other window.
+ARGS is passed through to `counsel-git-grep-action'."
+  (switch-to-buffer-other-window (current-buffer))
+  (apply #'counsel-git-grep-action args))
+(ivy-add-actions
+ 'counsel-git-grep
+ '(("j" counsel-git-grep-other-window "other window")))
 
 ;; prescient
 (require 'prescient)
