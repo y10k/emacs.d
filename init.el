@@ -522,6 +522,7 @@ ARGS is passed through to `counsel-git-grep-action'."
 (ivy-add-actions
  'counsel-git-grep
  '(("j" counsel-git-grep-other-window "other window")))
+(defalias 'counsel-git-ls 'counsel-git)
 
 ;; prescient
 (require 'prescient)
