@@ -512,8 +512,7 @@
       (string-join '("git status --short --untracked-files=all | awk '$1~/?/{print $2}'" ; additional untracked files
                      "git ls-files --full-name --")                                      ; default git command
                    "; "))
-(with-eval-after-load "magit"
-  (setq magit-completing-read-function 'ivy-completing-read))
+(defalias 'counsel-git-ls 'counsel-git)
 (defun counsel-git-grep-other-window (&rest args)
   "Go to occurrence X in current Git repository other window.
 ARGS is passed through to `counsel-git-grep-action'."
@@ -522,7 +521,8 @@ ARGS is passed through to `counsel-git-grep-action'."
 (ivy-add-actions
  'counsel-git-grep
  '(("j" counsel-git-grep-other-window "other window")))
-(defalias 'counsel-git-ls 'counsel-git)
+(with-eval-after-load "magit"
+  (setq magit-completing-read-function 'ivy-completing-read))
 
 ;; prescient
 (require 'prescient)
