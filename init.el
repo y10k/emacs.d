@@ -488,9 +488,9 @@
                      (cons candidate-string
                            (abs (- name-len (length candidate-string)))))
                    (lambda (a b)
-                     (if (not (= (cdr a) (cdr b)))
-                         (< (cdr a) (cdr b))
-                       (string< (car a) (car b))))
+                     (or (< (cdr a) (cdr b))
+                         (and (= (cdr a) (cdr b))
+                              (string< (car a) (car b)))))
                    candidates))))
 (dolist (i '(counsel-M-x
              counsel-apropos
