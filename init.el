@@ -570,7 +570,7 @@ C1 and C2 is original arguments."
 ;; magit
 (setq magit-git-executable "git")
 (defun my-advice/magit-status-full-window (&rest args)
-  "After advice for `magit-status'.
+  "After advice function for `magit-status'.
 ARGS is original arguments."
   (delete-other-windows))
 (advice-add 'magit-status :after #'my-advice/magit-status-full-window)
