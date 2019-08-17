@@ -526,6 +526,7 @@ ARGS is passed through to `counsel-git-grep-action'."
 
 ;; prescient
 (require 'prescient)
+(setq prescient-aggressive-file-save t)
 (prescient-persist-mode 1)
 (require 'ivy-prescient)
 (ivy-prescient-mode 1)
