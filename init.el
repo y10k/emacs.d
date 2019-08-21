@@ -296,6 +296,25 @@
       (concat "ruby " (expand-file-name "/usr/local/bin/irb") " --inf-ruby-mode"))
 (setq yari-ri-program-name "bundle exec ri")
 (setq yari-ruby-program-name "bundle exec ruby")
+(dolist (i '(
+             (ruby-comma-delimiter
+              (regexp . ",\\(\\s-*\\)[^# \t\n]")
+              (repeat . t)
+              (modes  . '(ruby-mode)))
+             (ruby-hash-literal
+              (regexp . "\\(\\s-*\\)=>\\s-*[^# \t\n]")
+              (repeat . t)
+              (modes  . '(ruby-mode)))
+             (ruby-new-hash-literal
+              (regexp . "\\(\\s-*:\\)[ \t]\\s-*[^# \t\n]")
+              (repeat . t)
+              (modes  . '(ruby-mode)))
+             (ruby-assignment-literal
+              (regexp . "\\(\\s-*\\)=\\s-*[^# \t\n]")
+              (repeat . t)
+              (modes  . '(ruby-mode)))
+             ))
+  (setf (alist-get (car i) align-rules-list) (cdr i)))
 
 ;; Major mode for RDoc editing
 (autoload 'rdoc-mode "rdoc-mode" "Major mode for RD editing." t)
