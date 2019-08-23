@@ -294,7 +294,7 @@
 (setq ruby-test-unit-runner-options "--no-use-color") ; for test-unit on ruby-2.2.0 or later.
 (defconst ruby-test-unit-test-code-regexp-list
   (append ruby-test-unit-test-code-regexp-list
-          '("^\\s *\\(require\\|必要\\).*\\s\"japanize/test_unit\\s\"")))
+          '("^\\s *\\(require\\|要求\\).*\\s\"japanize/test_unit\\s\"")))
 (setq ruby-program-name
       (concat "ruby " (expand-file-name "/usr/local/bin/irb") " --inf-ruby-mode"))
 (setq yari-ri-program-name "bundle exec ri")
