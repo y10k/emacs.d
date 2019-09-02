@@ -309,11 +309,11 @@
                 (repeat . t)
                 (modes  . '(ruby-mode)))
                (ruby-new-hash-literal
-                (regexp . "\\(\\s-*:\\)[ \t]\\s-*[^# \t\n]")
+                (regexp . ":\\(\\s-+\\)\\s-*[^# \t\n]")
                 (repeat . t)
                 (modes  . '(ruby-mode)))
                (ruby-assignment-literal
-                (regexp . "\\(\\s-*\\)=\\s-*[^# \t\n]")
+                (regexp . "\\(\\s-+\\)=\\s-*[^# \t\n]")
                 (repeat . t)
                 (modes  . '(ruby-mode)))))
     (setf (alist-get (car i) align-rules-list) (cdr i))))
