@@ -404,10 +404,22 @@
 (setq skk-rom-kana-rule-list
       '(("hh" "h"
          ("ッ" . "っ"))
-        ("mm" "m"
+        ("mn" "n"
          ("ン" . "ん"))
-        ; 記号の追加
-        ("!" nil "！")))
+        ;; 半角記号
+        ("?" nil "?")
+        ("@" nil "@")
+        (":" nil ":")
+        (";;" nil ";")
+        (";." nil ".")
+        (";," nil ",")
+        (";-" nil "-")
+        (";[" nil "[")
+        (";]" nil "]")
+        (";/" nil "/")
+        (";$" nil "$")
+        (";\\" nil "\\")
+        ("; " nil " ")))
 
 ;; SDIC-mode
 (if (>= emacs-major-version 26)
