@@ -88,40 +88,43 @@
    '(region ((t (:background "blue3" :foreground "brightwhite"))))))
 
 ;; frame size & alpha
-(if window-system
-    (let* ((geometry-pixel-list (alist-get 'geometry (car (display-monitor-attributes-list))))
-           (geometry-pixel-width (nth 2 geometry-pixel-list))
-           (geometry-pixel-height (nth 3 geometry-pixel-list))
-           (geometry-pixel-size (list geometry-pixel-width geometry-pixel-height)))
+(defun my/auto-frame-size ()
+  "Automatically set the optimal frame size and parameters."
+  (interactive)
+  (let* ((geometry-pixel-list (alist-get 'geometry (car (display-monitor-attributes-list))))
+         (geometry-pixel-width (nth 2 geometry-pixel-list))
+         (geometry-pixel-height (nth 3 geometry-pixel-list))
+         (geometry-pixel-size (list geometry-pixel-width geometry-pixel-height)))
+    (cond
+     ((and (eq window-system 'x))
+      (modify-all-frames-parameters '((alpha . (75 50 50 50))))
       (cond
-       ((and (eq window-system 'x))
-        (modify-all-frames-parameters '((alpha . (75 50 50 50))))
-        (cond
-         ((equal geometry-pixel-size '(1800 1200))
-          (modify-all-frames-parameters
-           '((width . 170)
-             (height . 51)
-             (font . "MS Gothic-12")))
-          (dolist (i '((left . 30)
-                       (top . 50)))
-            (setf (alist-get (car i) initial-frame-alist) (cdr i)))))
-        (cond
-         ((equal geometry-pixel-size '(2560 1440))
-          (modify-all-frames-parameters
-           '((width . 200)
-             (height . 51)
-             (font . "MS Gothic-12")))
-          (dolist (i '((left . 80)
-                       (top . 70)))
-            (setf (alist-get (car i) initial-frame-alist) (cdr i))))))
-       ((eq window-system 'w32)
-        (modify-all-frames-parameters '((alpha . (90 60 60 60))))
-        (cond
-         ((equal geometry-pixel-size '(1800 1200))
-          (modify-all-frames-parameters
-           '((width . 170)
-             (height . 53)
-             (font . "ＭＳ ゴシック-12")))))))))
+       ((equal geometry-pixel-size '(1800 1200))
+        (modify-all-frames-parameters
+         '((width . 170)
+           (height . 51)
+           (font . "MS Gothic-12")))
+        (dolist (i '((left . 30)
+                     (top . 50)))
+          (setf (alist-get (car i) initial-frame-alist) (cdr i)))))
+      (cond
+       ((equal geometry-pixel-size '(2560 1440))
+        (modify-all-frames-parameters
+         '((width . 200)
+           (height . 51)
+           (font . "MS Gothic-12")))
+        (dolist (i '((left . 80)
+                     (top . 70)))
+          (setf (alist-get (car i) initial-frame-alist) (cdr i))))))
+     ((eq window-system 'w32)
+      (modify-all-frames-parameters '((alpha . (90 60 60 60))))
+      (cond
+       ((equal geometry-pixel-size '(1800 1200))
+        (modify-all-frames-parameters
+         '((width . 170)
+           (height . 53)
+           (font . "ＭＳ ゴシック-12")))))))))
+(if window-system (my/auto-frame-size))
 
 ;; frame title
 (setq frame-title-format
