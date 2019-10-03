@@ -598,7 +598,8 @@ C1 and C2 is original arguments."
     eww-mode
     completion-setup
     vc-git-log-view-mode
-    compilation-mode))
+    compilation-mode
+    calendar-mode))
 
 (dolist (mode my/disable-trailing-whitespace-mode-list)
   (add-hook (intern (concat (symbol-name mode) "-hook"))
