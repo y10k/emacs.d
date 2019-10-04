@@ -317,7 +317,12 @@
                (ruby-assignment-literal
                 (regexp . "\\(\\s-+\\)=\\s-*[^# \t\n]")
                 (repeat . t)
-                (modes  . '(ruby-mode)))))
+                (modes  . '(ruby-mode)))
+               (markdown-table
+                (regexp . "\\( *\\)|")
+                (spacing . 0)
+                (repeat . t)
+                (modes . '(markdown-mode)))))
     (setf (alist-get (car i) align-rules-list) (cdr i))))
 
 ;; Major mode for RDoc editing
