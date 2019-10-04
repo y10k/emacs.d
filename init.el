@@ -292,8 +292,7 @@
 
 ;; Ruby mode
 (require 'ruby-test-unit)
-(add-hook 'ruby-mode-hook
-          (lambda () (ruby-test-unit-keys)))
+(add-hook 'ruby-mode-hook #'ruby-test-unit-keys)
 (setq ruby-test-unit-runner-options "--no-use-color") ; for test-unit on ruby-2.2.0 or later.
 (defconst ruby-test-unit-test-code-regexp-list
   (append ruby-test-unit-test-code-regexp-list
