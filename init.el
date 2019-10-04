@@ -657,6 +657,12 @@ ARGS is original arguments."
 ;; kill emacs
 (setq confirm-kill-emacs 'yes-or-no-p)
 
+;; markdown
+(defun my/markdown-mode-keys ()
+  "Key bindings for markdown mode."
+  (define-key markdown-mode-map (kbd "C-c c") 'compile))
+(add-hook 'markdown-mode-hook #'my/markdown-mode-keys)
+
 ;; emacs auto settings
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
