@@ -668,6 +668,20 @@ ARGS is original arguments."
   (define-key markdown-mode-map (kbd "C-c c") 'compile))
 (add-hook 'markdown-mode-hook #'my/markdown-mode-keys)
 
+;; spell checker
+(setq-default ispell-program-name "aspell")
+(with-eval-after-load "ispell"
+  (add-to-list 'ispell-skip-region-alist '("[^\000-\377]+")))
+(defun my/flyspell-setup ()
+  "Setup flyspell."
+  (flyspell-mode 1))
+(dolist (mode '(ruby-mode
+                emacs-lisp-mode
+                text-mode               ; for commit log
+                markdown-mode))
+  (add-hook (intern (concat (symbol-name mode) "-hook"))
+            #'my/flyspell-setup))
+
 ;; emacs auto settings
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
