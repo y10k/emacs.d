@@ -675,9 +675,7 @@ ARGS is original arguments."
 (defun my/flyspell-setup ()
   "Setup flyspell."
   (flyspell-mode 1))
-(dolist (mode '(ruby-mode
-                emacs-lisp-mode
-                text-mode               ; for commit log
+(dolist (mode '(text-mode               ; for commit log
                 markdown-mode))
   (add-hook (intern (concat (symbol-name mode) "-hook"))
             #'my/flyspell-setup))
