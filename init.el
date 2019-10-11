@@ -491,9 +491,11 @@
              (electric-indent-local-mode -1)))
 
 ;; flycheck
+(defun my/flycheck-setup ()
+  "Setup flycheck."
+  (flycheck-mode 1))
 (add-hook 'after-init-hook 'global-flycheck-mode)
-(add-hook 'ruby-mode-hook
-          (lambda () (flycheck-mode 1))) ; force flycheck enable on tramp
+(add-hook 'ruby-mode-hook #'flycheck-mode) ; force flycheck enable on tramp
 
 ;; git-gutter
 (global-git-gutter-mode t)
