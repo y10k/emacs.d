@@ -16,15 +16,14 @@
 (require 'subr-x)
 
 ;; path for MS-Windows
-(if (eq system-type 'windows-nt)
-   (progn
-     (delete "C:/WINDOWS/System32/OpenSSH/" exec-path)
-     (add-to-list 'exec-path "C:/Program Files/Git/usr/bin" t)
-     (setenv "PATH"
-             (let ((path-list (split-string (getenv "PATH") ";")))
-               (delete "C:\\WINDOWS\\System32\\OpenSSH\\" path-list)
-               (add-to-list 'path-list "C:\\Program Files\\Git\\usr\\bin")
-               (string-join path-list ";")))))
+(when (eq system-type 'windows-nt)
+  (delete "C:/WINDOWS/System32/OpenSSH/" exec-path)
+  (add-to-list 'exec-path "C:/Program Files/Git/usr/bin" t)
+  (setenv "PATH"
+          (let ((path-list (split-string (getenv "PATH") ";")))
+            (delete "C:\\WINDOWS\\System32\\OpenSSH\\" path-list)
+            (add-to-list 'path-list "C:\\Program Files\\Git\\usr\\bin")
+            (string-join path-list ";"))))
 
 ;; Info directories
 (setq Info-default-directory-list
@@ -72,8 +71,8 @@
 (load "term/bobcat")
 (when (fboundp 'terminal-init-bobcat)
   (terminal-init-bobcat))
-(if (boundp 'minibuffer-local-filename-completion-map)
-    (define-key minibuffer-local-filename-completion-map " " 'minibuffer-complete-word))
+(when (boundp 'minibuffer-local-filename-completion-map)
+  (define-key minibuffer-local-filename-completion-map " " 'minibuffer-complete-word))
 (global-set-key (kbd "C-\\") 'help-command)
 (global-set-key (kbd "C-\\ C-\\") 'help-for-help)
 (global-set-key (kbd "C-h") 'delete-backward-char)
@@ -124,7 +123,7 @@
          '((width . 170)
            (height . 53)
            (font . "ＭＳ ゴシック-12")))))))))
-(if window-system (my/auto-frame-size))
+(when window-system (my/auto-frame-size))
 
 ;; frame title
 (setq frame-title-format
@@ -148,14 +147,12 @@
 (tool-bar-mode 0)
 
 ;; no menu in CUI
-(if (not window-system)
-    (menu-bar-mode 0))
+(when (not window-system) (menu-bar-mode 0))
 
 ;; Mode line information
-(if window-system
-    (progn
-      (require 'powerline)
-      (powerline-default-theme)))
+(when window-system
+  (require 'powerline)
+  (powerline-default-theme))
 (setq display-time-24hr-format t)
 (setq display-time-day-and-date t)
 (display-time-mode t)
@@ -429,8 +426,8 @@
         ("; " nil " ")))
 
 ;; SDIC-mode
-(if (>= emacs-major-version 26)
-    (defvaralias 'default-fill-column 'fill-column))
+(when (>= emacs-major-version 26)
+  (defvaralias 'default-fill-column 'fill-column))
 (autoload 'sdic-describe-word "sdic"
   "" t nil)
 (autoload 'sdic-describe-word-at-point "sdic"
@@ -621,9 +618,9 @@ ARGS is original arguments."
 (global-set-key (kbd "C-x g") 'magit-status)
 
 ;; tramp
-(if (eq system-type 'windows-nt)
-    (setq tramp-ssh-controlmaster-options
-          "-tt -o ControlMaster=auto -o ControlPath=/tmp/tramp.%%C -o ControlPersist=no"))
+(when (eq system-type 'windows-nt)
+  (setq tramp-ssh-controlmaster-options
+        "-tt -o ControlMaster=auto -o ControlPath=/tmp/tramp.%%C -o ControlPersist=no"))
 
 ;; undo-tree
 (require 'undo-tree)
