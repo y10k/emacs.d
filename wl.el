@@ -1,10 +1,10 @@
-; -*- mode: emacs-lisp; coding: utf-8 -*-
+;;; wl.el --- initialize wanderlust  -*- coding: utf-8 -*-
 
-;;;
-;;; Wanderlust
-;;;
+;;; Commentary:
 
-; SSL
+;;; Code:
+
+;; SSL
 (setq ssl-program-name "openssl")
 (setq ssl-program-arguments
   '("s_client"
@@ -15,7 +15,7 @@
     "-CApath" ssl-certificate-directory
     ))
 
-; Win32 HOME network settings
+;; Win32 HOME network settings
 (cond
  ((and (eq window-system 'w32)
        (or (string-match "^[Cc][Ee][Rr][Nn][Oo][Bb][Oo][Gg]" (system-name))
@@ -23,7 +23,7 @@
   (setq elmo-msgdb-directory "//cernobog/toki/.elmo")
   (setq elmo-localdir-folder-path "//cernobog/toki/Mail")))
 
-; Folder
+;; Folders
 (setq wl-strict-diff-folders '("^\\+inbox$" "@.*\\.plutonian\\.ne\\.jp" "@mail\\.freedom\\.ne\\.jp"))
 (setq wl-auto-check-folder-list '("^\\+inbox$" "@.*\\.plutonian\\.ne\\.jp"))
 (setq wl-auto-uncheck-folder-list '("."))
@@ -31,7 +31,7 @@
 (setq wl-default-spec "%")
 (setq wl-stay-folder-window t)
 
-; Server
+;; Servers
 (setq elmo-pop3-default-server "mail.freedom.ne.jp")
 (setq elmo-imap4-default-server "imap.gmail.com")
 (setq elmo-imap4-default-port 993)
@@ -45,10 +45,10 @@
 (setq wl-smtp-posting-user "toki")
 (setq wl-smtp-authenticate-type "plain")
 
-; Local Domain
+;; Local Domain
 (setq wl-local-domain "wl-message-id-domain")
 
-; Offline mode
+;; Offline mode
 (setq wl-plugged nil)
 (if (or (string-match "^[Cc][Ee][Rr][Nn][Oo][Bb][Oo][Gg]" (system-name))
 	(string-match "^[Vv][Aa][Rr][Cc][Oo][Ll][Aa][Cc]" (system-name))
@@ -65,7 +65,7 @@
 		 (elmo-set-plugged t "news.edit.ne.jp" 119)
 		 (elmo-set-plugged t "shimbun")))))
 
-; Message
+;; Message
 (setq elmo-msgdb-extra-fields '("X-ML-Name" "Newsgroups"))
 (setq elmo-archive-treat-file t)
 (setq wl-alias-file "~/.aliases")
@@ -74,13 +74,13 @@
 (setq wl-message-id-domain "mail.freedom.ne.jp")
 (setq wl-summary-auto-refile-skip-marks ())
 
-; Expire
+;; Expire
 (setq wl-expire-use-log t)
 (setq wl-summary-expire-reserve-marks
       '(; "$"
 	"N" "U" "!"))
 
-; Draft
+;; Draft
 (setq wl-interactive-send t)
 (setq wl-user-mail-address-list
       '("toki@freedom.ne.jp"
@@ -122,6 +122,8 @@ Yoshinori Toki <toki@freedom.ne.jp>
   (lambda ()
     (define-key wl-draft-mode-map "\C-c\C-y" 'xcite-yank-cur-msg))))
 
-; Color
+;; Color
 (set-face-foreground 'wl-highlight-message-cited-text-2 "DeepPink")
 (set-face-foreground 'wl-highlight-summary-new-face "Magenta")
+
+;;; wl.el ends here
