@@ -391,6 +391,12 @@
      (and ad-return-value
           (setq ad-return-value (eword-decode-string ad-return-value)))))
 
+;; Wanderlust
+(setq wl-init-file (locate-user-emacs-file "wl.el"))
+(setq wl-folders-file (locate-user-emacs-file "wl/folders"))
+(setq wl-address-file (locate-user-emacs-file "wl/addresses"))
+(setq wl-x-face-file (locate-user-emacs-file "wl/xface"))
+
 ;; SKK
 (autoload 'skk-mode "skk" nil t)
 (autoload 'skk-auto-fill-mode "skk" nil t)
