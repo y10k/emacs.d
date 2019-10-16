@@ -58,6 +58,8 @@
 (setq wl-summary-target-above 1000)
 (setq wl-message-id-domain "mail.freedom.ne.jp")
 (setq wl-summary-auto-refile-skip-marks ())
+(with-eval-after-load "mime-view"
+  (define-key mime-view-mode-default-map (kbd "C-c c") 'xcite))
 
 ;; Expire
 (setq wl-expire-use-log t)
@@ -100,12 +102,13 @@ Yoshinori Toki <toki@freedom.ne.jp>
  'wl-mail-setup-hook
  (function
   (lambda ()
-    (set-buffer-file-coding-system 'iso-2022-jp-unix))))
+    (set-buffer-file-coding-system 'utf-8))))
 (add-hook
- 'wl-mail-setup-hook
+ 'wl-draft-mode-hook
  (function
   (lambda ()
-    (define-key wl-draft-mode-map "\C-c\C-y" 'xcite-yank-cur-msg))))
+    (define-key wl-draft-mode-map (kbd "C-c c") 'xcite)
+    (define-key wl-draft-mode-map (kbd "C-c C-y") 'xcite-yank-cur-msg))))
 
 ;; Color
 (set-face-foreground 'wl-highlight-message-cited-text-2 "DeepPink")

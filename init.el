@@ -266,7 +266,6 @@
 ;; Exciting cite utility
 (autoload 'xcite "xcite" "exciting cite" t)
 (autoload 'xcite-yank-cur-msg "xcite" "exciting cite" t)
-(global-set-key (kbd "C-c c") 'xcite)
 (setq xcite:insert-header-function
       (function xcite-toki-header))
 (defun xcite-toki-header ()
