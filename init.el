@@ -388,7 +388,7 @@
 (eval-after-load "mime"                 ; http://lists.airs.net/wl/archive/199909/msg00031.html
   '(defadvice mime-entity-filename (around mime-decode activate)
      ad-do-it
-     (and ad-return-value 
+     (and ad-return-value
           (setq ad-return-value (eword-decode-string ad-return-value)))))
 
 ;; SKK
