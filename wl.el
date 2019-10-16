@@ -98,6 +98,13 @@
 Yoshinori Toki <toki@freedom.ne.jp>
 "))
 	))
+(setq charsets-mime-charset-alist
+      (mapcar
+       (lambda (i)
+         (if (string-prefix-p "iso-2022-jp" (symbol-name (cdr i)))
+             (cons (car i) 'utf-8)
+           i))
+       charsets-mime-charset-alist))
 (add-hook
  'wl-mail-setup-hook
  (function
