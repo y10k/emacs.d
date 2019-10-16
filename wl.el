@@ -24,8 +24,8 @@
   (setq elmo-localdir-folder-path "//cernobog/toki/Mail")))
 
 ;; Folders
-(setq wl-strict-diff-folders '("^\\+inbox$" "@.*\\.plutonian\\.ne\\.jp" "@mail\\.freedom\\.ne\\.jp"))
-(setq wl-auto-check-folder-list '("^\\+inbox$" "@.*\\.plutonian\\.ne\\.jp"))
+(setq wl-strict-diff-folders '("^\\+inbox$" "@mail\\.freedom\\.ne\\.jp"))
+(setq wl-auto-check-folder-list '("^\\+inbox$"))
 (setq wl-auto-uncheck-folder-list '("."))
 (setq wl-default-folder "+inbox")
 (setq wl-default-spec "%")
@@ -50,20 +50,6 @@
 
 ;; Offline mode
 (setq wl-plugged nil)
-(if (or (string-match "^[Cc][Ee][Rr][Nn][Oo][Bb][Oo][Gg]" (system-name))
-	(string-match "^[Vv][Aa][Rr][Cc][Oo][Ll][Aa][Cc]" (system-name))
-	(string-match "^[Bb][Aa][Bb][Aa][Yy][Aa][Gg][Aa]" (system-name)))
-    (add-hook 'wl-make-plugged-hook
-	      (function
-	       (lambda ()
-		 (elmo-set-plugged t "mail.freedom.ne.jp" 110)
-		 (elmo-set-plugged t "mx.edit.ne.jp" 110)
-		 (elmo-set-plugged t "babayaga.plutonian.ne.jp" 110)
-		 (elmo-set-plugged t "cernobog.plutonian.ne.jp" 110)
-		 (elmo-set-plugged t "cernobog.plutonian.ne.jp" 143)
-		 (elmo-set-plugged t "imap.gmail.com" 993 'ssl)
-		 (elmo-set-plugged t "news.edit.ne.jp" 119)
-		 (elmo-set-plugged t "shimbun")))))
 
 ;; Message
 (setq elmo-msgdb-extra-fields '("X-ML-Name" "Newsgroups"))
