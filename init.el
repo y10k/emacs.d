@@ -280,8 +280,7 @@
    (if id
        (format "%s wrote...\n"
                (cond
-                ((or (string-match "^toki@freedom\\.ne\\.jp$" id)
-                     (string-match "^toki@.*phys\\(\\.sci\\)?\\.kobe-u\\.ac\\.jp$" id))
+                ((string-match "^toki@freedom\\.ne\\.jp$" id)
                  (format "自分 <%s>" id))
                 (handle
                  (format "%s <%s>" handle id))
