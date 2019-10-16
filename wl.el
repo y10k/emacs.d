@@ -54,7 +54,6 @@
 ;; Message
 (setq elmo-msgdb-extra-fields '("X-ML-Name" "Newsgroups"))
 (setq elmo-archive-treat-file t)
-(setq wl-alias-file "~/.aliases")
 (setq wl-summary-important-above 0)
 (setq wl-summary-target-above 1000)
 (setq wl-message-id-domain "mail.freedom.ne.jp")

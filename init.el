@@ -395,6 +395,7 @@
 (setq wl-init-file (locate-user-emacs-file "wl.el"))
 (setq wl-folders-file (locate-user-emacs-file "wl/folders"))
 (setq wl-address-file (locate-user-emacs-file "wl/addresses"))
+(setq wl-alias-file (locate-user-emacs-file "wl/aliases"))
 (setq wl-x-face-file (locate-user-emacs-file "wl/xface"))
 
 ;; SKK
