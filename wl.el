@@ -98,13 +98,6 @@
 Yoshinori Toki <toki@freedom.ne.jp>
 "))
 	))
-(setq charsets-mime-charset-alist
-      (mapcar
-       (lambda (i)
-         (if (string-prefix-p "iso-2022-jp" (symbol-name (cdr i)))
-             (cons (car i) 'utf-8)
-           i))
-       charsets-mime-charset-alist))
 (add-hook
  'wl-mail-setup-hook
  (function
@@ -116,6 +109,15 @@ Yoshinori Toki <toki@freedom.ne.jp>
   (lambda ()
     (define-key wl-draft-mode-map (kbd "C-c c") 'xcite)
     (define-key wl-draft-mode-map (kbd "C-c C-y") 'xcite-yank-cur-msg))))
+
+;; Encode the Japanese characters by UTF-8 on sending a message
+(setq charsets-mime-charset-alist
+      (mapcar
+       (lambda (i)
+         (if (string-prefix-p "iso-2022-jp" (symbol-name (cdr i)))
+             (cons (car i) 'utf-8)
+           i))
+       charsets-mime-charset-alist))
 
 ;; Color
 (set-face-foreground 'wl-highlight-message-cited-text-2 "DeepPink")
