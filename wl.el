@@ -39,7 +39,6 @@
 (setq elmo-imap4-default-user "yr10ki@gmail.com")
 (setq elmo-imap4-default-authenticate-type 'clear)
 (setq elmo-imap4-use-modified-utf7 t)
-(setq elmo-nntp-default-server "news.edit.ne.jp")
 (setq wl-smtp-posting-server "mail.freedom.ne.jp")
 (setq wl-smtp-posting-port 587)
 (setq wl-smtp-posting-user "toki")
