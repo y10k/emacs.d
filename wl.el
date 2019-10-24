@@ -30,6 +30,7 @@
 (setq wl-default-folder "+inbox")
 (setq wl-default-spec "%")
 (setq wl-stay-folder-window t)
+(setq wl-folder-check-async t)
 
 ;; Servers
 (setq elmo-pop3-default-server "mail.freedom.ne.jp")
