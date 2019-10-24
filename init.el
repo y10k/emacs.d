@@ -105,8 +105,7 @@
            (font . "MS Gothic-12")))
         (dolist (i '((left . 30)
                      (top . 50)))
-          (setf (alist-get (car i) initial-frame-alist) (cdr i)))))
-      (cond
+          (setf (alist-get (car i) initial-frame-alist) (cdr i))))
        ((equal geometry-pixel-size '(2560 1440))
         (modify-all-frames-parameters
          '((width . 200)
