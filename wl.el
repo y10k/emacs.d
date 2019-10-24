@@ -41,7 +41,6 @@
 (setq elmo-imap4-use-modified-utf7 t)
 (setq wl-smtp-posting-server "mail.freedom.ne.jp")
 (setq wl-smtp-posting-port 587)
-(setq wl-smtp-connection-type "ssl")
 (setq wl-smtp-posting-user "toki")
 (setq wl-smtp-authenticate-type "plain")
 
