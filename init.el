@@ -560,8 +560,8 @@
 (global-set-key (kbd "C-x C-b") 'ivy-switch-buffer)        ; replace to counsel command
 (global-set-key (kbd "ESC M-x") 'execute-extended-command) ; backup original command
 (setq counsel-git-cmd
-      (string-join '("git status --short --untracked-files=all | awk '$1~/?/{print $2}'" ; additional untracked files
-                     "git ls-files --full-name --")                                      ; default git command
+      (string-join '("git status --short --untracked-files=all | awk '$1~/\\?/{print $2}'" ; additional untracked files
+                     "git ls-files --full-name --")                                        ; default git command
                    "; "))
 (defalias 'counsel-git-ls 'counsel-git)
 (defun counsel-git-grep-other-window (&rest args)
