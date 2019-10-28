@@ -119,6 +119,9 @@ Yoshinori Toki <toki@freedom.ne.jp>
            i))
        charsets-mime-charset-alist))
 
+;; Not split a large message
+(setq mime-edit-split-message nil)
+
 ;; Color
 (set-face-foreground 'wl-highlight-message-cited-text-2 "DeepPink")
 (set-face-foreground 'wl-highlight-summary-new-face "Magenta")
