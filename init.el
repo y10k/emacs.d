@@ -41,7 +41,10 @@
  '(package-selected-packages
    (quote
     (google-translate ivy-prescient prescient counsel swiper ivy quickrun wanderlust highlight-indent-guides unfill volatile-highlights undo-tree powerline ddskk magit auto-complete flycheck git-gutter inf-ruby yari yaml-mode markdown-mode)))
- '(safe-local-variable-values (quote ((frozen_string_literal . true)))))
+ '(safe-local-variable-values
+   (quote
+    ((whitespace-line-column . 80)
+     (frozen_string_literal . true)))))
 
 ;; emacs -q -lした時に、user-emacs-directoryが変わるように
 (when load-file-name
