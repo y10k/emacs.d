@@ -40,7 +40,7 @@
  '(ange-ftp-try-passive-mode t)
  '(package-selected-packages
    (quote
-    (google-translate ivy-prescient prescient counsel swiper ivy quickrun wanderlust highlight-indent-guides unfill volatile-highlights undo-tree powerline ddskk magit auto-complete flycheck git-gutter inf-ruby yari yaml-mode markdown-mode)))
+    (docker-tramp google-translate ivy-prescient prescient counsel swiper ivy quickrun wanderlust highlight-indent-guides unfill volatile-highlights undo-tree powerline ddskk magit auto-complete flycheck git-gutter inf-ruby yari yaml-mode markdown-mode)))
  '(safe-local-variable-values
    (quote
     ((whitespace-line-column . 80)
@@ -636,6 +636,8 @@ ARGS is original arguments."
 (when (eq system-type 'windows-nt)
   (setq tramp-ssh-controlmaster-options
         "-tt -o ControlMaster=auto -o ControlPath=/tmp/tramp.%%C -o ControlPersist=no"))
+(require 'docker-tramp-compat)
+(set-variable 'docker-tramp-use-names t)
 
 ;; undo-tree
 (require 'undo-tree)
