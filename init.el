@@ -582,6 +582,7 @@ ARGS is passed through to `counsel-git-grep-action'."
 (prescient-persist-mode 1)
 (require 'ivy-prescient)
 (ivy-prescient-mode 1)
+(setf (alist-get 'counsel-yank-pop ivy-sort-functions-alist) nil)
 
 ;; imenu
 (setq imenu-max-item-length 256)
