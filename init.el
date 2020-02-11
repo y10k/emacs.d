@@ -584,6 +584,7 @@ ARGS is passed through to `counsel-git-grep-action'."
 (ivy-prescient-mode 1)
 (dolist (i '(counsel-git
              counsel-git-grep
+             counsel-imenu
              counsel-yank-pop))
   (setf (alist-get i ivy-sort-functions-alist) nil))
 
