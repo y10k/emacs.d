@@ -40,7 +40,7 @@
  '(ange-ftp-try-passive-mode t)
  '(package-selected-packages
    (quote
-    (docker-tramp google-translate ivy-prescient prescient counsel swiper ivy quickrun wanderlust highlight-indent-guides unfill volatile-highlights undo-tree powerline ddskk magit auto-complete flycheck git-gutter inf-ruby yari yaml-mode markdown-mode)))
+    (rotate docker-tramp google-translate ivy-prescient prescient counsel swiper ivy quickrun wanderlust highlight-indent-guides unfill volatile-highlights undo-tree powerline ddskk magit auto-complete flycheck git-gutter inf-ruby yari yaml-mode markdown-mode)))
  '(safe-local-variable-values
    (quote
     ((whitespace-line-column . 80)
