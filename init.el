@@ -117,7 +117,9 @@
         (dolist (i '((left . 80)
                      (top . 70)))
           (setf (alist-get (car i) initial-frame-alist) (cdr i))))
-       ((equal geometry-pixel-size '(2736 1824))
+       ((or
+         (equal geometry-pixel-size '(2736 1824))
+         (equal geometry-pixel-size '(2736 1764)))
         (modify-all-frames-parameters
          '((width . 200)
            (height . 66)
