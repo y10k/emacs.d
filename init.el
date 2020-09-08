@@ -101,7 +101,9 @@
      ((and (eq window-system 'x))
       (modify-all-frames-parameters '((alpha . (75 50 50 50))))
       (cond
-       ((equal geometry-pixel-size '(1800 1200))
+       ((or
+         (equal geometry-pixel-size '(1800 1200))
+         (equal geometry-pixel-size '(1800 1150)))
         (modify-all-frames-parameters
          '((width . 170)
            (height . 51)
